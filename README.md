@@ -3,9 +3,9 @@ NoBias is a program that will detect bias in a news article. We will detect bias
 
 # Roles
 - Product Manager - Omer Erturk - https://codermerlin.academy/users/omer-erturk/Digital%20Portfolio/index.html 
-- Project Manager - Sriram Maramganti
-- Release Manager - Danyal Ahmed
-- QA Analyst - Piper Paradise (@paradisep) - https://codermerlin.academy/users/piper-paradise/Digital%20Portfolio/
-- UI/UX Designer - Zaenb Al Ameri
-- Database Analytics - Ziad Hamam
+- Project Manager - Sriram Maramganti - https://codermerlin.academy/users/sriram-maramganti/Digital%20Portfolio/index.html
+- Release Manager - Danyal Ahmed - https://codermerlin.academy/users/danyal-ahmed/Digital%20Portfolio/index.html
+- QA Analyst - Piper Paradise (@paradisep) - https://codermerlin.academy/users/piper-paradise/Digital%20Portfolio/index.html
+- UI/UX Designer - Zaenb Al Ameri - https://codermerlin.academy/users/zaenb-al-ameri/Digital%20Portfolio/index.html
+- Database Analytics - Ziad Hamam - https://codermerlin.academy/users/ziad-hamam/Digital%20Portfolio/index.html
 - Front End Engineer - Kunwar Kalra
