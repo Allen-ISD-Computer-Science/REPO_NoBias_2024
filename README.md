@@ -9,3 +9,18 @@ NoBias is a program that will detect bias in a news article. We will detect bias
 - UI/UX Designer - Zaenb Al Ameri - [Digital Portfolio] (https://codermerlin.academy/users/zaenb-al-ameri/Digital%20Portfolio/index.html)
 - Database Analytics - Ziad Hamam - [Digital Portfolio] (https://codermerlin.academy/users/ziad-hamam/Digital%20Portfolio/index.html)
 - Front End Engineer - Kunwar Kalra
+
+# Getting Started
+
+To get started with this project, ensure the following prerequisites
+
+## Prerequisites
+
+- Python 3.12.0 or later
+- Visual Studio Code
+
+## Installation
+
+git clone git@github.com:Allen-ISD-Computer-Science/REPO_NoBias_2024.git
+cd REPO_NoBias_2024
+pip3 install -r requirements.txt
