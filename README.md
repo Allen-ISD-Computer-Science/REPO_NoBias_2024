@@ -27,3 +27,12 @@ git clone git@github.com:Allen-ISD-Computer-Science/REPO_NoBias_2024.git
 cd REPO_NoBias_2024
 pip3 install -r requirements.txt
 ```
+
+## Run Server
+
+Once all of the required modules and libraries are installed, execute the following to run the server 
+```
+python3 manage.py runserver
+```
+
+Once the server starts running, [view the website](http://127.0.0.1:8000/nobiasapp/submitLink/).
