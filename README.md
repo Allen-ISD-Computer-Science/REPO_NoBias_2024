@@ -21,6 +21,9 @@ To get started with this project, ensure the following prerequisites
 
 ## Installation
 
--git clone git@github.com:Allen-ISD-Computer-Science/REPO_NoBias_2024.git
--cd REPO_NoBias_2024
--pip3 install -r requirements.txt
+Once you've satifsied the prerequisites, execute the following:
+```
+git clone git@github.com:Allen-ISD-Computer-Science/REPO_NoBias_2024.git
+cd REPO_NoBias_2024
+pip3 install -r requirements.txt
+```
