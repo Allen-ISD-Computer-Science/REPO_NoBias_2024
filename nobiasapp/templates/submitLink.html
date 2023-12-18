@@ -1,0 +1,79 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>NoBias</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap');
+
+            body {
+                font-family: 'Arial', sans-serif;
+                background: linear-gradient(to right top, #003366, #004080, #005399, #4885b3, #9bccef);
+                background-size: 300% 300%;
+                min-height: 99vh;
+                animation: gradientAnimation 5s ease infinite;
+            }
+
+            @keyframes gradientAnimation {
+                0% {
+                    background-position: 0% 50%;
+                }
+
+                50% {
+                    background-position: 100% 50%;
+                }
+
+                100% {
+                    background-position: 0% 50%;
+                }
+            }
+
+            h1 {
+                font-family: 'Open Sans', sans-serif;
+                font-size: 50px;
+                text-align: center;
+                color: #fff;
+                /* Text color in a more formal white */
+            }
+
+            p {
+                color: #ddd;
+                /* Subdued text color */
+            }
+
+            div {
+                background-color: rgba(255, 255, 255, 0.8);
+                /* Semi-transparent white background */
+                padding: 20px;
+                border-radius: 10px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>NoBias</h1>
+        <!-- submit_link.html -->
+        <!-- submit_link.html -->
+        <!-- your_template.html -->
+        <form method="post" action="{% url 'submitLink' %}"
+            style="display: flex; flex-direction: column; align-items: center; padding: 20px;">
+            {% csrf_token %}
+            <div style="display: flex; flex-direction: column; width: 70%; align-items: center; ">
+                {{ form.link }}
+                <button type="submit"
+                    style="width: 100%; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer;">Submit</button>
+            </div>
+        </form>
+
+
+
+
+
+
+    </body>
+
+</html>
