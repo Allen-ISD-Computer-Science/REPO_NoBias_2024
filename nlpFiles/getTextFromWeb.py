@@ -2,6 +2,7 @@ import nltk
 from nltk.tokenize import sent_tokenize, word_tokenize
 import urllib.request
 from selenium import webdriver
+import os
 from bs4 import BeautifulSoup
 from nltk.corpus import wordnet as wn
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
@@ -9,8 +10,37 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 def pasteText(list, link):
 
     analyzer = SentimentIntensityAnalyzer()
-    # Create a new instance of the Safari browser
-    driver = webdriver.Safari()
+
+    #Detect the users browser
+    BROWSER = os.environ.get('BROWSER', 'chrome')
+
+    supported_browsers = ['chrome', 'firefox', 'safari', 'edge']
+
+    if BROWSER.lower() in supported_browsers:
+        if BROWSER.lower() == 'chrome':
+            chrome_options = webdriver.ChromeOptions()
+            chrome_options.add_argument('--headless')  # Run in headless mode (no GUI)
+            driver = webdriver.Chrome(options=chrome_options)       
+        elif BROWSER.lower() == 'firefox':
+            firefox_options = webdriver.FirefoxOptions()
+            firefox_options.add_argument('--headless')  # Run in headless mode (no GUI)
+            driver = webdriver.Firefox(options=firefox_options) 
+        elif BROWSER.lower() == 'safari':
+            driver = webdriver.Safari()
+            safari_options = webdriver.SafariOptions()
+            safari_options.add_argument('--headless')  # Run in headless mode (no GUI)
+            driver = webdriver.Safari(options=safari_options) 
+        elif BROWSER.lower() == 'edge':
+            # Use the Microsoft Edge WebDriver
+            driver = webdriver.Edge()
+            edge_options = webdriver.EdgeOptions()
+            edge_options.add_argument('--headless')  # Run in headless mode (no GUI)
+            driver = webdriver.Edge(options=edge_options) 
+        # Add more conditions for other browsers if needed
+    else:
+        print(f"Invalid or unsupported browser specified: {BROWSER}. Using the default browser.")
+        # Use a default browser (e.g., Chrome) when the specified browser is invalid
+        driver = webdriver.Chrome()
     driver.get(link)
 
 # Wait for a while to allow JavaScript to execute (adjust the time as needed)
@@ -45,7 +75,7 @@ def pasteText(list, link):
                 count += 1
 
         #Will stop once reaches the end of the article (Reuters)
-        if "Reporting by" in sentInPara:
+        if "Reporting by" in sentInPara or "Get all the stories you need" in sentInPara:
             break
             
         #Will only paste sentences in para and polarity score if sentence is not empty
