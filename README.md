@@ -21,11 +21,12 @@ To get started with this project, ensure the following prerequisites
 
 ## Installation
 
-Once you've satifsied the prerequisites, execute the following:
+Once the prerequisites have been completed, execute the following:
 ```
 git clone git@github.com:Allen-ISD-Computer-Science/REPO_NoBias_2024.git
 cd REPO_NoBias_2024
 pip3 install -r requirements.txt
+python3 nlpFiles/nltkmodules.py
 ```
 
 ## Run Server
