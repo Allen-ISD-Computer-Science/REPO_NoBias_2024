@@ -1,15 +1,3 @@
-#################################################################################
-#         FILE:
-#           getTextFromWeb.py
-#       AUTHOR:
-#           Omer Erturk
-#  DESCRIPTION:
-#           
-#           
-# DEPENDENCIES:
-#           Created with Python 3.12.0(Python version)
-#           nltk, urllib.request, requests, bs4, wordnet
-#################################################################################
 import nltk
 from nltk.tokenize import sent_tokenize, word_tokenize
 import urllib.request
@@ -17,10 +5,6 @@ from selenium import webdriver
 from bs4 import BeautifulSoup
 from nltk.corpus import wordnet as wn
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
-# nltk.download('averaged_perceptron_tagger')
-# from app import input_data
-# print(input_data)
-#TODO Get link from user input
 
 def pasteText(list, link):
 
@@ -45,6 +29,7 @@ def pasteText(list, link):
     totNeutral = 0
     totPositive = 0
     count = 0
+
     for para in wantedText:
         sentences = sent_tokenize(para.text.strip())
         sentInPara = ""
@@ -58,14 +43,19 @@ def pasteText(list, link):
                 totNeutral += tagged["neu"]
                 totPositive += tagged["pos"]
                 count += 1
-        
-        if "Reporting by" in sentInPara or "Funding for the" in sentInPara:
+
+        #Will stop once reaches the end of the article (Reuters)
+        if "Reporting by" in sentInPara:
             break
+            
+        #Will only paste sentences in para and polarity score if sentence is not empty
         if sentInPara != "":
             list.append(sentInPara)
             list.append("|")
             list.append(tagged)
             list.append("----")
+
+    #In the end, the average polarity score of the article is added
     list.append(f"{totNegative / count * 100}% Negative, {totNeutral / count * 100}% Neutral, {totPositive / count * 100}% Positive")
 
 
