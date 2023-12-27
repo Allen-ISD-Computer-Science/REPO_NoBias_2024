@@ -21,7 +21,7 @@ To get started with this project, ensure the following prerequisites
 
 ## Installation
 
-Once the prerequisites have been completed, execute the following:
+Once the prerequisites have been completed, open up a terminal page in Visual Studio Code and execute the following:
 ```
 git clone git@github.com:Allen-ISD-Computer-Science/REPO_NoBias_2024.git
 cd REPO_NoBias_2024
