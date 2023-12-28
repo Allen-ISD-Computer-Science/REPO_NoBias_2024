@@ -30,3 +30,4 @@ tzdata==2023.3
 urllib3==2.1.0
 wheel==0.42.0
 wsproto==1.2.0
+vaderSentiment==3.3.2

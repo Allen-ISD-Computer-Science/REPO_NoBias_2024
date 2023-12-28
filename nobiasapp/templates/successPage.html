@@ -7,51 +7,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Successfuly Submitted Link</title>
-        <style>
-            @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap');
-
-            body {
-                font-family: 'Arial', sans-serif;
-                background: linear-gradient(to right top, #003366, #004080, #005399, #4885b3, #9bccef);
-                background-size: 300% 300%;
-                min-height: 99vh;
-                animation: gradientAnimation 5s ease infinite;
-            }
-
-            @keyframes gradientAnimation {
-                0% {
-                    background-position: 0% 50%;
-                }
-
-                50% {
-                    background-position: 100% 50%;
-                }
-
-                100% {
-                    background-position: 0% 50%;
-                }
-            }
-
-            h1 {
-                font-family: 'Open Sans', sans-serif;
-                font-size: 50px;
-                text-align: center;
-                color: #fff;
-                /* Text color in a more formal white */
-            }
-
-            p {
-                color: #ddd;
-                /* Subdued text color */
-            }
-
-            div {
-                background-color: rgba(255, 255, 255, 0.8);
-                /* Semi-transparent white background */
-                padding: 20px;
-                border-radius: 10px;
-            }
-        </style>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
     </head>
 
     <body>

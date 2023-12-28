@@ -12,6 +12,7 @@ def pasteText(list, link):
     analyzer = SentimentIntensityAnalyzer()
 
     #Detect the users browser
+
     BROWSER = os.environ.get('BROWSER', 'chrome')
 
     supported_browsers = ['chrome', 'firefox', 'safari', 'edge']
@@ -19,28 +20,26 @@ def pasteText(list, link):
     if BROWSER.lower() in supported_browsers:
         if BROWSER.lower() == 'chrome':
             chrome_options = webdriver.ChromeOptions()
-            chrome_options.add_argument('--headless')  # Run in headless mode (no GUI)
+            chrome_options.add_argument('--headless')  
             driver = webdriver.Chrome(options=chrome_options)       
         elif BROWSER.lower() == 'firefox':
             firefox_options = webdriver.FirefoxOptions()
-            firefox_options.add_argument('--headless')  # Run in headless mode (no GUI)
+            firefox_options.add_argument('--headless')  
             driver = webdriver.Firefox(options=firefox_options) 
         elif BROWSER.lower() == 'safari':
             driver = webdriver.Safari()
             safari_options = webdriver.SafariOptions()
-            safari_options.add_argument('--headless')  # Run in headless mode (no GUI)
+            safari_options.add_argument('--headless')  
             driver = webdriver.Safari(options=safari_options) 
         elif BROWSER.lower() == 'edge':
-            # Use the Microsoft Edge WebDriver
             driver = webdriver.Edge()
             edge_options = webdriver.EdgeOptions()
-            edge_options.add_argument('--headless')  # Run in headless mode (no GUI)
+            edge_options.add_argument('--headless')  #
             driver = webdriver.Edge(options=edge_options) 
-        # Add more conditions for other browsers if needed
     else:
         print(f"Invalid or unsupported browser specified: {BROWSER}. Using the default browser.")
-        # Use a default browser (e.g., Chrome) when the specified browser is invalid
         driver = webdriver.Chrome()
+        
     driver.get(link)
 
 # Wait for a while to allow JavaScript to execute (adjust the time as needed)
