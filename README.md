@@ -36,4 +36,4 @@ Once all of the required modules and libraries are installed, execute the follow
 python3 manage.py runserver
 ```
 
-Once the server starts running, [view the website](http://127.0.0.1:8000/nobiasapp/).
+Once the server starts running, [view the website](http://127.0.0.1:8000).
