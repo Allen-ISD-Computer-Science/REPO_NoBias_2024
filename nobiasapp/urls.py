@@ -4,7 +4,7 @@ from . import views
 from .views import submitLink, index
 urlpatterns = [
     # path("", views.index, name="index"),
-    path('', submitLink,name='submitLink'),
+    path('', submitLink, name='submitLink'),
     path('index/', index, name="index")
    
 ]  
