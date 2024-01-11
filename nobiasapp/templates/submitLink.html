@@ -7,12 +7,51 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>NoBias</title>
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <style>
+            /* Add loader styles */
+            .loader-container {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(255, 255, 255, 0.8);
+                justify-content: center;
+                align-items: center;
+                z-index: 9999;
+            }
+
+            .loader {
+                border: 8px solid #f3f3f3;
+                border-top: 8px solid #3498db;
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                animation: spin 1s linear infinite;
+            }
+
+            @keyframes spin {
+                0% {
+                    transform: rotate(0deg);
+                }
+
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+        </style>
     </head>
 
     <body>
         <h1>NoBias</h1>
+        <!-- Add loader container -->
+        <div class="loader-container" id="loaderContainer">
+            <div class="loader"></div>
+        </div>
+
         <!-- A form for the user to submit a link to their desired web article -->
-        <form method="post" action="{% url 'submitLink' %}"
+        <form method="post" action="{% url 'submitLink' %}" onsubmit="showLoader()"
             style="display: flex; flex-direction: column; align-items: center; padding: 20px;">
             {% csrf_token %}
             <div style="display: flex; flex-direction: column; width: 70%; align-items: center; ">
@@ -22,11 +61,12 @@
             </div>
         </form>
 
-
-
-
-
-
+        <script>
+            // JavaScript function to show loader when the form is submitted
+            function showLoader() {
+                document.getElementById('loaderContainer').style.display = 'flex';
+            }
+        </script>
     </body>
 
 </html>
