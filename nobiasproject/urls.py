@@ -25,3 +25,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     
 ] 
+# Piper_1/11/24 - should probably remove after development !
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

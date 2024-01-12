@@ -121,4 +121,7 @@ STATIC_URL = 'static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
+#REMOVE AFTER DEVELOPMENT IS DONE :)) - Piper 1/11/24
+STATIC_ROOT = os.path.join(BASE_DIR, 'nobiasapp/static')
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
