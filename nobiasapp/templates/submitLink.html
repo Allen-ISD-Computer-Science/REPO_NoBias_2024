@@ -20,6 +20,7 @@
                 justify-content: center;
                 align-items: center;
                 z-index: 9999;
+                scale:1.2;
             }
 
             .loader {
@@ -28,23 +29,45 @@
                 background: rgba(255, 255, 255, 0.0);
             }
 
-            @keyframes spin {
+            @keyframes scale1 {
                 0% {
-                    transform: rotate(0deg);
+                    translate: -2.5px -3px
+                }
+
+                50% {
+                    translate: -2.5px 3px
                 }
 
                 100% {
-                    transform: rotate(360deg);
+                    translate: -2.5px -3px
                 }
             }
 
-            @keyframes reverse_spin {
+            @keyframes scale2 {
                 0% {
-                    transform: rotate(0deg);
+                    translate: 1.8px 3.35px
+                }
+
+                50% {
+                    translate: 1.8px -3.5px
                 }
 
                 100% {
-                    transform: rotate(-360deg);
+                    translate: 1.8px 3.35px
+                }
+            }
+
+            @keyframes tilter {
+                0% {
+                    transform: rotate(5deg);translate: 30.6px 21px
+                }
+
+                50% {
+                    transform: rotate(-5deg);translate: 30.6px 21px
+                }
+
+                100% {
+                    transform: rotate(5deg);translate: 30.6px 21px
                 }
             }
         </style>
@@ -55,10 +78,16 @@
         <!-- Add loader container -->
         <div class="loader-container" id="loaderContainer">
             <div class="loader">
-                <img src="{% static 'img/baseloadingui.png' %}" alt="Loading Image"
-                    style="width:150px;height:150px;opacity:0.9;animation: spin 1s linear infinite;position:absolute;">
-                <img src="{% static 'img/middleloadingui.png' %}" alt="Loading Image"
-                    style="width:150px;height:150px;opacity:0.9;animation: reverse_spin 1s linear infinite;position:absolute;">
+                <img src="{% static 'img/backgroundloadui.png' %}" alt="Loading Image"
+                    style="width:150px;height:150px;opacity:0.9;position:absolute;">
+                <img src="{% static 'img/scale1.png' %}" alt="Loading Image"
+                    style="width:150px;height:150px;opacity:0.9;animation: scale1 2s ease infinite;position:absolute;">
+                <img src="{% static 'img/scale2.png' %}" alt="Loading Image"
+                    style="width:150px;height:150px;opacity:0.9;animation: scale2 2s ease infinite;position:absolute;">
+                <img src="{% static 'img/tilter.png' %}" alt="Loading Image"
+                    style="width:88px;height:18px;opacity:0.9;animation: tilter 2s ease infinite;position:absolute;">
+                <img src="{% static 'img/stand.png' %}" alt="Loading Image"
+                    style="width:150px;height:150px;opacity:0.9;position:absolute;">
             </div>
         </div>
 
