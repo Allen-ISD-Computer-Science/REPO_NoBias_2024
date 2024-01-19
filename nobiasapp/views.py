@@ -24,5 +24,5 @@ def submitLink(request):
         form = SubmitLinkForm()
 
     return render(request, 'submitLink.html', {'form': form})
-def index(request):
-    return render(request, 'index.html')
+def aboutus(request):
+    return render(request, 'aboutus.html')
