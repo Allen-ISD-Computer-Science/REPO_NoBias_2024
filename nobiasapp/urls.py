@@ -1,10 +1,8 @@
 from django.urls import path
 
 from . import views
-from .views import submitLink, index
+from .views import submitLink, aboutus
 urlpatterns = [
-    # path("", views.index, name="index"),
+    path("aboutus", views.aboutus, name="aboutus"),
     path('', submitLink, name='submitLink'),
-    path('index/', index, name="index")
-   
 ]  

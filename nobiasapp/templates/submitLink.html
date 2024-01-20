@@ -5,10 +5,14 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <br><br><br><br><br><br><br>
         <title>NoBias</title>
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+            integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
         <style>
-            /* Add loader styles */
             .loader-container {
                 display: none;
                 position: fixed;
@@ -20,7 +24,7 @@
                 justify-content: center;
                 align-items: center;
                 z-index: 9999;
-                scale:1.2;
+                scale: 1.2;
             }
 
             .loader {
@@ -59,23 +63,48 @@
 
             @keyframes tilter {
                 0% {
-                    transform: rotate(5deg);translate: 30.6px 21px
+                    transform: rotate(5deg);
+                    translate: 30.6px 21px
                 }
 
                 50% {
-                    transform: rotate(-5deg);translate: 30.6px 21px
+                    transform: rotate(-5deg);
+                    translate: 30.6px 21px
                 }
 
                 100% {
-                    transform: rotate(5deg);translate: 30.6px 21px
+                    transform: rotate(5deg);
+                    translate: 30.6px 21px
                 }
             }
         </style>
     </head>
 
     <body>
-        <h1>NoBias</h1>
-        <!-- Add loader container -->
+
+        <header class="header">
+
+            <a href="#" class="logo"> Logo</a>
+
+            <input type="checkbox" id="check">
+            <label for="check" class="icons">
+                <i class="bx bx-menu" id="menu-icon"></i>
+                <i class="bx bx-x" id="close-icon"></i>
+
+
+            </label>
+
+            <nav class="navbar">
+                <a href="" style="--i:0;">Home<span></span></a>
+                <a href="aboutus" style="--i:1;">About Us<span></span></a>
+                <a href="#" style="--i:2;"> Contacts<span></span></a>
+                <a href="#" style="--i:3;"> Services<span></span></a>
+
+            </nav>
+        </header>
+        <div>
+            <h1>NoBias</h1>
+        </div>
         <div class="loader-container" id="loaderContainer">
             <div class="loader">
                 <img src="{% static 'img/backgroundloadui.png' %}" alt="Loading Image"
@@ -90,24 +119,44 @@
                     style="width:150px;height:150px;opacity:0.9;position:absolute;">
             </div>
         </div>
-
-        <!-- A form for the user to submit a link to their desired web article -->
         <form method="post" action="{% url 'submitLink' %}" onsubmit="showLoader()"
             style="display: flex; flex-direction: column; align-items: center; padding: 20px;">
             {% csrf_token %}
-            <div style="display: flex; flex-direction: column; width: 70%; align-items: center; ">
+            <div class="linkbox" style="display: flex; flex-direction: column; width: 70%; align-items: center; ">
                 {{ form.link }}
                 <button type="submit"
                     style="width: 100%; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer;">Submit</button>
             </div>
         </form>
-
         <script>
             // JavaScript function to show loader when the form is submitted
             function showLoader() {
                 document.getElementById('loaderContainer').style.display = 'flex';
             }
         </script>
+        <footer>
+            <div class="footerContainer">
+                <div class="socialIcons">
+                    <a href=""><i class="fa-brands fa-facebook "></i></a>
+                    <a href=""><i class="fa-brands fa-instagram "></i></a>
+                    <a href=""><i class="fa-brands fa-twitter "></i></a>
+                    <a href=""><i class="fa-brands fa-google-plus "></i></a>
+                </div>
+                <!-- <div class="footerNav">
+                    <ul>
+                        <li><a href="">Home</a></li>
+                        <li><a href="">About</a></li>
+                        <li><a href="">Contact Us</a></li>
+                        <li><a href="">Our Team</a></li>
+                    </ul>
+                </div> -->
+
+                <div class="footerBottom">
+
+                    <p>Copyright &copy;2024; NoBias</p>
+
+                </div>
+        </footer>
     </body>
 
 </html>

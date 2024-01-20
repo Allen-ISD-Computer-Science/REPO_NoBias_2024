@@ -1,0 +1,117 @@
+{% load static %}
+
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <br><br><br><br><br>
+        <title>NoBias</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+            integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+    </head>
+    <style>
+        section {
+            background-color: #f8f8f8;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            line-height: 30px;
+            padding-top: 25px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        strong {
+            color: #007bff;
+        }
+    </style>
+
+    <body>
+
+        <header class="header">
+
+            <a href="#" class="logo"> Logo</a>
+
+            <input type="checkbox" id="check">
+            <label for="check" class="icons">
+                <i class="bx bx-menu" id="menu-icon"></i>
+                <i class="bx bx-x" id="close-icon"></i>
+
+
+            </label>
+
+            <nav class="navbar">
+                <a href="../" style="--i:0;">Home<span></span></a>
+                <a href="aboutus" style="--i:1;">About Us<span></span></a>
+                <a href="#" style="--i:2;"> Contacts<span></span></a>
+                <a href="#" style="--i:3;"> Services<span></span></a>
+            </nav>
+        </header>
+    
+        <section>
+            <h1 style="text-align: center; color: #333;">About Us</h1> <br>
+            <h2> Vision Statement</h2>
+            <p> NoBias is a program that will detect bias in a news article. We will detect bias by analyzing the tone, sentiment, and diction of the news article. A user will submit a web link to their desired news article and our program will return an in-depth analysis of the article: summary of the news article, heavy tone words, different political sides, sentiment analysis, and a bias meter.
+
+            </p>
+            <h2>Our Team</h2>
+            <p>Welcome to NoBias, where we are dedicated to unravel bias in news articles. Meet our talented team:
+            </p>
+
+            <ul>
+                <li><strong>Product Manager:</strong> Omer Erturk</li>
+                <li><strong>Project Manager:</strong> Sriram Maramganti</li>
+                <li><strong>Quality Assurance Analytics:</strong> Piper Paradise</li>
+                <li><strong>UI/UX Designer:</strong> Zaenb Al-Ameri</li>
+                <li><strong>Release Manager:</strong> Danyal Ahmed</li>
+                <li><strong>Database Analytics:</strong> Ziad Hamam</li>
+            </ul>
+
+            <p>Together, we strive to ensure to uncover any bias in news articles and provide users with the truth.</p>
+        </section>
+        <footer>
+            <div class="footerContainer">
+                <div class="socialIcons">
+                    <a href=""><i class="fa-brands fa-facebook "></i></a>
+                    <a href=""><i class="fa-brands fa-instagram "></i></a>
+                    <a href=""><i class="fa-brands fa-twitter "></i></a>
+                    <a href=""><i class="fa-brands fa-google-plus "></i></a>
+                </div>
+                <!-- <div class="footerNav">
+                    <ul>
+                        <li><a href="">Home</a></li>
+                        <li><a href="">About</a></li>
+                        <li><a href="">Contact Us</a></li>
+                        <li><a href="">Our Team</a></li>
+                    </ul>
+                </div> -->
+
+                <div class="footerBottom">
+
+                    <p>Copyright &copy;2024; NoBias</p>
+
+                </div>
+        </footer>
+    </body>
+
+</html>
