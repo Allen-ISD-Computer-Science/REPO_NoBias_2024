@@ -227,7 +227,7 @@ p {
 
 .footerContainer {
     width: 100%;
-    position: fixed;
+    position: sticky;
     bottom: 0;
 }
 

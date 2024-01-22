@@ -9,10 +9,20 @@
         <title>Successfuly Submitted Link</title>
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
     </head>
+    <style>
+        .box {
+            background-color: #f8f8f8;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            line-height: 30px;
+            padding-top: 25px;
+        }
+    </style>
 
     <body>
         <h1>NoBias</h1>
-        <div class="box" style="display: flex; flex-direction: column; align-items: center; padding: 20px;">
+        <div class="box">
             <h2>Successfully submitted links</h2>
             <ul style="list-style-type: none; padding: 0; ">
                 {% for link in thisVar %}
