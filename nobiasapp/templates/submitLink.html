@@ -160,7 +160,7 @@ padding-top: 2%;
             </div>
         </div>
         <form method="post" action="{% url 'submitLink' %}" onsubmit="showLoader()"
-            style="display: flex; flex-direction: column; align-items: center; padding: 20px;">
+            style="display: flex; flex-direction: column; align-items: center; padding: 20px; margin-top: 50px;">
             {% csrf_token %}
             <div class="linkbox" style="display: flex; flex-direction: column; width: 70%; align-items: center; ">
                 {{ form.link }}
