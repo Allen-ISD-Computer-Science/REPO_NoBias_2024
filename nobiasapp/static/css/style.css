@@ -221,8 +221,8 @@ p {
 .footerContainer {
     width: 100%;
     position: fixed;
-    bottom: -60px;
-    z-index: 999;
+    bottom: 0;
+    
 }
 
 .socialIcons {
