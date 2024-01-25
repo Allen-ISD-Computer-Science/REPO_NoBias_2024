@@ -3,8 +3,8 @@
 body {
     font-family: 'Arial', sans-serif;
     background: linear-gradient(to right top, #003366, #004080, #005399, #4885b3, #9bccef);
-    width:100%;
-    height: 100vh;
+    background-size: 300% 300%;
+    min-height: 99vh;
     animation: gradientAnimation 5s ease infinite;
 }
 
