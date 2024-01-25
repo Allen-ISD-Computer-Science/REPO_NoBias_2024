@@ -142,7 +142,7 @@ padding-top: 2%;
 
             </nav>
         </header>
-        <div>
+        <div style="margin-top: 60px;">
             <h1>NoBias</h1>
         </div>
         <div class="loader-container" id="loaderContainer">
@@ -160,7 +160,7 @@ padding-top: 2%;
             </div>
         </div>
         <form method="post" action="{% url 'submitLink' %}" onsubmit="showLoader()"
-            style="display: flex; flex-direction: column; align-items: center; padding: 20px; margin-top: 50px;">
+            style="display: flex; flex-direction: column; align-items: center; padding: 20px; margin-top: 70px;">
             {% csrf_token %}
             <div class="linkbox" style="display: flex; flex-direction: column; width: 70%; align-items: center; ">
                 {{ form.link }}
