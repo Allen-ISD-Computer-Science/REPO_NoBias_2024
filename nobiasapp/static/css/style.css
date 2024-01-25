@@ -222,6 +222,7 @@ p {
     width: 100%;
     position: fixed;
     bottom: 0;
+    margin-bottom: 100px;
 }
 
 .socialIcons {
