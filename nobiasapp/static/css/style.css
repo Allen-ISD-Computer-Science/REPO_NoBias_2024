@@ -221,7 +221,7 @@ p {
 .footerContainer {
     width: 100%;
     position: fixed;
-    bottom: 0;
+    bottom: -100px;
     z-index: 999;
 }
 
