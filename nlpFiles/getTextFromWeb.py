@@ -66,7 +66,7 @@ def pasteText(list, link):
                 tagged = analyzer.polarity_scores(sent)
                 sentInPara += " {0}".format(sent)
                 # Adds to the total polarity based on the key of the dictionary
-                
+                count += 1
         #Will stop once reaches the end of the article (Reuters)
         if "Reporting by" in sentInPara or "Get all the stories you need" in sentInPara:
             break
