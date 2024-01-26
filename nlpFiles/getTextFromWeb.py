@@ -42,13 +42,11 @@ def pasteText(list, link):
         
     driver.get(link)
 
-# Wait for a while to allow JavaScript to execute (adjust the time as needed)
+    # Wait for a while to allow JavaScript to execute (adjust the time as needed)
     driver.implicitly_wait(1)
 
-    # Now you can interact with the page using Selenium methods
-    # For example, you can retrieve the page source
     pageSource = driver.page_source
-    #Using BS and strip_tags to get the text I want
+    #Using BS and strip_tags to get wanted text
 
     soupText = BeautifulSoup(pageSource, 'html.parser')
     wantedText = soupText.findAll("p")
@@ -68,11 +66,7 @@ def pasteText(list, link):
                 tagged = analyzer.polarity_scores(sent)
                 sentInPara += " {0}".format(sent)
                 # Adds to the total polarity based on the key of the dictionary
-                totNegative += tagged["neg"]
-                totNeutral += tagged["neu"]
-                totPositive += tagged["pos"]
-                count += 1
-
+                
         #Will stop once reaches the end of the article (Reuters)
         if "Reporting by" in sentInPara or "Get all the stories you need" in sentInPara:
             break
@@ -84,8 +78,11 @@ def pasteText(list, link):
             list.append(tagged)
             list.append("----")
 
-    #In the end, the average polarity score of the article is added
-    list.append(f"{totNegative / count * 100}% Negative, {totNeutral / count * 100}% Neutral, {totPositive / count * 100}% Positive")
+    #In the end, the average polarity score of the article is added (variables for polarity meter)
+    list.append(totNegative / count * 100)
+    list.append(totNeutral / count * 100)
+    list.append(totPositive / count * 100)
+    
 
 
             

@@ -1,13 +1,7 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.shortcuts import render
 from nlpFiles.getTextFromWeb import pasteText
 from .forms import SubmitLinkForm
-# Create your views here.
 
-# def index(request):
-#     this = []
-#     pasteText(this)
-#     return HttpResponse(this)
 def submitLink(request):
     if request.method == 'POST':
         form = SubmitLinkForm(request.POST)
@@ -16,13 +10,14 @@ def submitLink(request):
             link_object = form.save()  # This saves the link to the database
             thisVar = link_object.link  # Access the link and store it in thisVar
             # You can now use thisVar for other Python code
-            this = []
-            pasteText(this, thisVar)
+            paragraph = []
+            pasteText(paragraph, thisVar)
             # Redirect or render a success page
-            return render(request, 'successPage.html', {'thisVar': this})
+            return render(request, 'successPage.html', {'thisVar': paragraph})
     else:
         form = SubmitLinkForm()
 
     return render(request, 'submitLink.html', {'form': form})
+
 def aboutus(request):
     return render(request, 'aboutus.html')
