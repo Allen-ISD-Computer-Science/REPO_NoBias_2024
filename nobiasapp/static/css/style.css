@@ -29,6 +29,13 @@ h1 {
     color: #fff;
 }
 
+h2 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 25px;
+    text-align: center;
+    color: #fff;
+}
+
 p {
     color: #ddd;
 }
