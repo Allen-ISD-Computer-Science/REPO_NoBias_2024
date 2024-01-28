@@ -33,59 +33,61 @@
                 background: rgba(255, 255, 255, 0.0);
             }
 
-            .content-container{
+            .content-container {
                 width: 100%;
                 height: 100vh;
 
 
-}
+            }
 
-.slides{
+            .slides {
 
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 50px;
-    color: #7d3745;
-}
+                width: 100%;
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 50px;
+                color: #7d3745;
+            }
 
-.slides img{
+            .slides img {
 
-    width: 200px;
-    border-radius: 10px;
-    margin-right: 20px;
-}
-.slides h2{
+                width: 200px;
+                border-radius: 10px;
+                margin-right: 20px;
+            }
 
-    font-size: 30px;
-    font-weight: 500;
-    max-width: 450px;
+            .slides h2 {
 
-}
+                font-size: 30px;
+                font-weight: 500;
+                max-width: 450px;
 
-.slide1{
-    background: linear-gradient(to right top, #003366, #004080, #005399, #4885b3, #9bccef);
-background-position: 0% 70%;
-}
-.slide2{
-    background: linear-gradient(#96a0ae, #77a2ba, #5e89ab);
-    
-}
-.slide3{
-    background: linear-gradient(#44638e, #afc2cc, #5e89ab);
-    
-}
+            }
 
-.logo img{
-   width: 100px;
-   float: left;
-   padding-left: 9%;
-padding-top: 2%;
+            .slide1 {
+                background: linear-gradient(to right top, #003366, #004080, #005399, #4885b3, #9bccef);
+                background-position: 0% 70%;
+            }
 
+            .slide2 {
+                background: linear-gradient(#96a0ae, #77a2ba, #5e89ab);
 
-}
+            }
+
+            .slide3 {
+                background: linear-gradient(#44638e, #afc2cc, #5e89ab);
+
+            }
+
+            .logo img {
+                width: 100px;
+                float: left;
+                padding-left: 9%;
+                padding-top: 2%;
+            }
+
             @keyframes scale1 {
                 0% {
                     translate: -2.5px -3px
@@ -136,11 +138,11 @@ padding-top: 2%;
     <body>
 
         <header class="header">
-            <div class="logo"> 
-               <img src="https://i.ibb.co/h9FJLRX/1st-logo-1.png" alt="1st-logo-1" >
+            <div class="logo">
+                <img src="https://i.ibb.co/h9FJLRX/1st-logo-1.png" alt="1st-logo-1">
             </div>
 
-           
+
             <input type="checkbox" id="check">
             <label for="check" class="icons">
                 <i class="bx bx-menu" id="menu-icon"></i>
@@ -174,7 +176,7 @@ padding-top: 2%;
                     style="width:150px;height:150px;opacity:0.9;position:absolute;">
             </div>
         </div>
-	<h2>"Swipe Through Lies, with Truth Our Prize: Where Bias Hides, Our Detector Finds!"</h2>
+        <h2>"Swipe Through Lies, with Truth Our Prize: Where Bias Hides, Our Detector Finds!"</h2>
         <form method="post" action="{% url 'submitLink' %}" onsubmit="showLoader()"
             style="display: flex; flex-direction: column; align-items: center; padding: 20px; margin-top: 70px;">
             {% csrf_token %}
@@ -184,27 +186,22 @@ padding-top: 2%;
                     style="width: 100%; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer;">Submit</button>
             </div>
         </form>
-        <script>
-            // JavaScript function to show loader when the form is submitted
-            function showLoader() {
-                document.getElementById('loaderContainer').style.display = 'flex';
-            }
-        </script>
+
 
         <div class="content-container">
-<div class="slides slide1">
-  <img src="https://i.ibb.co/bLp0hN6/pic-2.jpg" alt="pic-2" >
-    <h2>Detect and measure bias in your sources</h2>
-</div>
+            <div class="slides slide1">
+                <img src="https://i.ibb.co/bLp0hN6/pic-2.jpg" alt="pic-2">
+                <h2>Detect and measure bias in your sources</h2>
+            </div>
 
-<div class="slides slide2">
-    <img src="https://i.ibb.co/CzQcYZV/pic-1.png" alt="pic-1">
-    <h2>Recieve accurate percentage scores for bias detection</h2>
-</div>
-<div class="slides slide3">
-   <img src="https://i.ibb.co/Mg8r7Sk/pic-3.jpg" alt="pic-3" >
-    <h2>User-friendly interface for effortless bias detection</h2>
-</div>
+            <div class="slides slide2">
+                <img src="https://i.ibb.co/CzQcYZV/pic-1.png" alt="pic-1">
+                <h2>Recieve accurate percentage scores for bias detection</h2>
+            </div>
+            <div class="slides slide3">
+                <img src="https://i.ibb.co/Mg8r7Sk/pic-3.jpg" alt="pic-3">
+                <h2>User-friendly interface for effortless bias detection</h2>
+            </div>
 
         </div>
         <footer">
@@ -230,6 +227,13 @@ padding-top: 2%;
 
                 </div>
                 </footer>
+                <!-- JS -->
+                <script>
+                    // JavaScript function to show loader when the form is submitted
+                    function showLoader() {
+                        document.getElementById('loaderContainer').style.display = 'flex';
+                    }
+                </script>
     </body>
 
 </html>
