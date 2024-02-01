@@ -65,6 +65,9 @@ def pasteText(list, link):
             if sent != "":
                 tagged = analyzer.polarity_scores(sent)
                 sentInPara += " {0}".format(sent)
+                totNegative += tagged["neg"]
+                totNeutral += tagged["neu"]
+                totPositive += tagged["pos"]
                 # Adds to the total polarity based on the key of the dictionary
                 count += 1
         #Will stop once reaches the end of the article (Reuters)
@@ -74,15 +77,13 @@ def pasteText(list, link):
         #Will only paste sentences in para and polarity score if sentence is not empty
         if sentInPara != "":
             list.append(sentInPara)
-            list.append("|")
-            list.append(tagged)
-            list.append("----")
+            list.append("-" * 80)
 
     #In the end, the average polarity score of the article is added (variables for polarity meter)
-    list.append(totNegative / count * 100)
-    list.append(totNeutral / count * 100)
-    list.append(totPositive / count * 100)
-    
+    if count != 0:
+        list.append(str(round(totNegative / count * 100, 1)) + " Negative")
+        list.append(str(round(totNeutral / count * 100, 1)) + " Neutral")
+        list.append(str(round(totPositive / count * 100, 1)) + " Positive")
 
 
             
