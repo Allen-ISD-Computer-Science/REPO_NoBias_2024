@@ -8,83 +8,80 @@
         <br><br><br><br><br><br><br>
         <title>NoBias</title>
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/loader.css' %}">
         <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
             integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
         <style>
-            .loader-container {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
+            
+
+            .content-container {
                 width: 100%;
-                height: 100%;
-                background: rgba(255, 255, 255, 0.4);
-                justify-content: center;
+                height: 100vh;
+
+
+            }
+
+            .slides {
+
+                width: 100%;
+                height: 100vh;
+                display: flex;
                 align-items: center;
-                z-index: 9999;
-                scale: 1.2;
+                justify-content: center;
+                gap: 50px;
+                color: #7d3745;
             }
 
-            .loader {
-                width: 150px;
-                height: 150px;
-                background: rgba(255, 255, 255, 0.0);
+            .slides img {
+
+                width: 200px;
+                border-radius: 10px;
+                margin-right: 20px;
             }
 
-            @keyframes scale1 {
-                0% {
-                    translate: -2.5px -3px
-                }
+            .slides h2 {
 
-                50% {
-                    translate: -2.5px 3px
-                }
+                font-size: 30px;
+                font-weight: 500;
+                max-width: 450px;
 
-                100% {
-                    translate: -2.5px -3px
-                }
             }
 
-            @keyframes scale2 {
-                0% {
-                    translate: 1.8px 3.35px
-                }
-
-                50% {
-                    translate: 1.8px -3.5px
-                }
-
-                100% {
-                    translate: 1.8px 3.35px
-                }
+            .slide1 {
+                background: linear-gradient(to right top, #003366, #004080, #005399, #4885b3, #9bccef);
+                background-position: 0% 70%;
             }
 
-            @keyframes tilter {
-                0% {
-                    transform: rotate(5deg);
-                    translate: 30.6px 21px
-                }
+            .slide2 {
+                background: linear-gradient(#96a0ae, #77a2ba, #5e89ab);
 
-                50% {
-                    transform: rotate(-5deg);
-                    translate: 30.6px 21px
-                }
-
-                100% {
-                    transform: rotate(5deg);
-                    translate: 30.6px 21px
-                }
             }
+
+            .slide3 {
+                background: linear-gradient(#44638e, #afc2cc, #5e89ab);
+
+            }
+
+            .logo img {
+                width: 100px;
+                float: left;
+                padding-left: 9%;
+                padding-top: 2%;
+            }
+
+            
         </style>
     </head>
 
     <body>
 
         <header class="header">
+            <div class="logo">
+                <img src="{% static 'img/logo.png' %}" alt="1st-logo-1" style="scale: 0.8;">
+            </div>
 
-            <a href="#" class="logo"> Logo</a>
 
             <input type="checkbox" id="check">
             <label for="check" class="icons">
@@ -102,7 +99,7 @@
 
             </nav>
         </header>
-        <div>
+        <div style="margin-top: 60px;">
             <h1>NoBias</h1>
         </div>
         <div class="loader-container" id="loaderContainer">
@@ -119,8 +116,12 @@
                     style="width:150px;height:150px;opacity:0.9;position:absolute;">
             </div>
         </div>
+
+        <h2>"Swipe Through Lies, with Truth Our Prize: Where Bias Hides, Our Detector Finds!"</h2>
+
+        <!-- Link Box -->
         <form method="post" action="{% url 'submitLink' %}" onsubmit="showLoader()"
-            style="display: flex; flex-direction: column; align-items: center; padding: 20px;">
+            style="display: flex; flex-direction: column; align-items: center; padding: 20px; margin-top: 70px;">
             {% csrf_token %}
             <div class="linkbox" style="display: flex; flex-direction: column; width: 70%; align-items: center; ">
                 {{ form.link }}
@@ -128,14 +129,26 @@
                     style="width: 100%; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer;">Submit</button>
             </div>
         </form>
-        <script>
-            // JavaScript function to show loader when the form is submitted
-            function showLoader() {
-                document.getElementById('loaderContainer').style.display = 'flex';
-            }
-        </script>
-        <footer>
-            <div class="footerContainer">
+
+
+        <div class="content-container">
+            <div class="slides slide1">
+                <img src="{% static 'img/pic-1.png' %}" alt="pic-1">
+                <h2>Detect and measure bias in your sources</h2>
+            </div>
+
+            <div class="slides slide2">
+                <img src="{% static 'img/pic-2.png' %}" alt="pic-2">
+                <h2>Recieve accurate percentage scores for bias detection</h2>
+            </div>
+            <div class="slides slide3">
+                <img src="{% static 'img/pic-3.png' %}" alt="pic-3" style="scale: 1.5;">
+                <h2>User-friendly interface for effortless bias detection</h2>
+            </div>
+
+        </div>
+        <footer">
+            <div class="footerContainer" style="position: fixed">
                 <div class="socialIcons">
                     <a href=""><i class="fa-brands fa-facebook "></i></a>
                     <a href=""><i class="fa-brands fa-instagram "></i></a>
@@ -152,11 +165,17 @@
                 </div> -->
 
                 <div class="footerBottom">
-
                     <p>Copyright &copy;2024; NoBias</p>
-
                 </div>
-        </footer>
+
+                </footer>
+                <!-- JS -->
+                <script>
+                    // JavaScript function to show loader when the form is submitted
+                    function showLoader() {
+                        document.getElementById('loaderContainer').style.display = 'flex';
+                    }
+                </script>
     </body>
 
 </html>

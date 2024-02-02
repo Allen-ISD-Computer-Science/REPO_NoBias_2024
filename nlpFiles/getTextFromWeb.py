@@ -42,13 +42,11 @@ def pasteText(list, link):
         
     driver.get(link)
 
-# Wait for a while to allow JavaScript to execute (adjust the time as needed)
+    # Wait for a while to allow JavaScript to execute (adjust the time as needed)
     driver.implicitly_wait(1)
 
-    # Now you can interact with the page using Selenium methods
-    # For example, you can retrieve the page source
     pageSource = driver.page_source
-    #Using BS and strip_tags to get the text I want
+    #Using BS and strip_tags to get wanted text
 
     soupText = BeautifulSoup(pageSource, 'html.parser')
     wantedText = soupText.findAll("p")
@@ -67,12 +65,11 @@ def pasteText(list, link):
             if sent != "":
                 tagged = analyzer.polarity_scores(sent)
                 sentInPara += " {0}".format(sent)
-                # Adds to the total polarity based on the key of the dictionary
                 totNegative += tagged["neg"]
                 totNeutral += tagged["neu"]
                 totPositive += tagged["pos"]
+                # Adds to the total polarity based on the key of the dictionary
                 count += 1
-
         #Will stop once reaches the end of the article (Reuters)
         if "Reporting by" in sentInPara or "Get all the stories you need" in sentInPara:
             break
@@ -80,12 +77,13 @@ def pasteText(list, link):
         #Will only paste sentences in para and polarity score if sentence is not empty
         if sentInPara != "":
             list.append(sentInPara)
-            list.append("|")
-            list.append(tagged)
-            list.append("----")
+            list.append("-" * 80)
 
-    #In the end, the average polarity score of the article is added
-    list.append(f"{totNegative / count * 100}% Negative, {totNeutral / count * 100}% Neutral, {totPositive / count * 100}% Positive")
+    #In the end, the average polarity score of the article is added (variables for polarity meter)
+    if count != 0:
+        list.append(str(round(totNegative / count * 100, 1)) + " Negative")
+        list.append(str(round(totNeutral / count * 100, 1)) + " Neutral")
+        list.append(str(round(totPositive / count * 100, 1)) + " Positive")
 
 
             

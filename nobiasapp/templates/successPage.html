@@ -9,11 +9,58 @@
         <title>Successfuly Submitted Link</title>
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
     </head>
+    <style>
+        .box {
+            background-color: #f8f8f8;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            line-height: 30px;
+            padding-top: 25px;
+        }
+
+        .polarity-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .polarity-bar .section {
+            height: 100%;
+            float: left;
+        }
+
+        .red-section {
+            background-color: #ff4646;
+        }
+
+        .grey-section {
+            background-color: #a0a0a0;
+        }
+
+        .green-section {
+            background-color: #4caf50;
+        }
+        h2{
+            color: black;
+        }
+    </style>
 
     <body>
-        <h1>NoBias</h1>
-        <div class="box" style="display: flex; flex-direction: column; align-items: center; padding: 20px;">
+        <h1> Hello </h1>
+
+        <div class="box">
             <h2>Successfully submitted links</h2>
+            <br>
+            <h2 style="font-weight: 200; text-align: center ;"> Polarity Bar</h2> <br>
+            <div class="polarity-bar">
+                <div class="section red-section" style="width: 30%"></div>
+                <div class="section grey-section" style="width: 40%;"></div>
+                <div class="section green-section" style="width: 30%;"></div>
+            </div>
+
             <ul style="list-style-type: none; padding: 0; ">
                 {% for link in thisVar %}
                 <li
