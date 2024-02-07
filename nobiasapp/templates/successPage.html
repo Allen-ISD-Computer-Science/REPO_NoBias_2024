@@ -25,6 +25,9 @@
             background-color: #ddd;
             border-radius: 5px;
             overflow: hidden;
+            --cwidth1: {{ thisVar|last.0 }};
+            --cwidth2: {{ thisVar|last.1 }};
+            --cwidth3: {{ thisVar|last.2 }};
         }
 
         .polarity-bar .section {
@@ -34,14 +37,17 @@
 
         .red-section {
             background-color: #ff4646;
+            width: var(--cwidth1);
         }
 
         .grey-section {
             background-color: #a0a0a0;
+            width: var(--cwidth2);
         }
 
         .green-section {
             background-color: #4caf50;
+            width: var(--cwidth3);
         }
         h2{
             color: black;
