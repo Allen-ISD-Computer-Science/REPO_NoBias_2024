@@ -6,7 +6,6 @@ def submitLink(request):
     if request.method == 'POST':
         form = SubmitLinkForm(request.POST)
         if form.is_valid():
-            
             link_object = form.save()  # This saves the link to the database
             thisVar = link_object.link  # Access the link and store it in thisVar
             # You can now use thisVar for other Python code

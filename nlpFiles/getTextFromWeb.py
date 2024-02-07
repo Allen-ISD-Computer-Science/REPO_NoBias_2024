@@ -56,7 +56,6 @@ def pasteText(list, link):
     totNeutral = 0
     totPositive = 0
     count = 0
-
     for para in wantedText:
         sentences = sent_tokenize(para.text.strip())
         sentInPara = ""
@@ -82,7 +81,8 @@ def pasteText(list, link):
     #In the end, the average polarity score of the article is added (variables for polarity meter)
     list1 = [str(round(totNegative / count * 100, 1)) + "%",str(round(totNeutral / count * 100, 1)) + "%",str(round(totPositive / count * 100, 1)) + "%"]
     if count != 0:
-        list.append(list1)
+        list.insert(0,list1)
+    
 
 
             
