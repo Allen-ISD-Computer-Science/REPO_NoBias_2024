@@ -2,7 +2,7 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(to right top, #003366, #004080, #005399, #4885b3, #9bccef);
+    background: linear-gradient(to right top, #0a0803, #96a0ae, #afc2cc, #5e89ab, #4da9b7, #de96a4);
     background-size: 300% 300%;
     min-height: 99vh;
     animation: gradientAnimation 5s ease infinite;
@@ -26,14 +26,14 @@ h1 {
     font-family: 'Open Sans', sans-serif;
     font-size: 50px;
     text-align: center;
-    color: #fff;
+    color: #0a0803;
 }
 
 h2 {
     font-family: 'Open Sans', sans-serif;
     font-size: 25px;
     text-align: center;
-    color: #fff;
+    color: #0a0803;
 }
 
 p {
@@ -81,7 +81,7 @@ p {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, .1);
+    background:rgba(0, 0, 0, .2);
     backdrop-filter: blur(50px);
     z-index: -1;
 
@@ -108,7 +108,7 @@ p {
 .navbar a {
     position: relative;
     font-size: 1.15rem;
-    color: #cdbab2;
+    color:#96a0ae;
     text-decoration: none;
     font-weight: 500;
     margin-left: 2.5rem;
@@ -119,7 +119,7 @@ p {
 
 .navbar a:hover {
 
-    color: #0ef;
+    color:#0ef;
 }
 
 .navbar a span {
@@ -253,7 +253,7 @@ p {
 
 .socialIcons a:hover {
 
-    background-color: #0ef;
+    background-color:#de96a4;
     transition: 0.5s;
 }
 
@@ -299,5 +299,5 @@ p {
 
 .footerBottom p {
 
-    color: white;
+    color: #0a0803;
 }
