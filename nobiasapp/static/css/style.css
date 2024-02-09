@@ -2,9 +2,9 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(to right top, #0a0803, #96a0ae, #afc2cc, #5e89ab, #4da9b7, #de96a4);
-    background-size: 300% 300%;
-    min-height: 100vh;
+    background: linear-gradient(to right top, #96a0ae, #afc2cc, #5e89ab, #4da9b7, #de96a4);
+    background-size: 400% 400%;
+    /* min-height: 100vh; */
     animation: gradientAnimation 5s ease infinite;
 }
 
@@ -81,7 +81,7 @@ p {
     left: 0;
     width: 100%;
     height: 100%;
-    background:rgba(0, 0, 0, .2);
+    background: rgba(0, 0, 0, .2);
     backdrop-filter: blur(50px);
     z-index: -1;
 
@@ -108,7 +108,7 @@ p {
 .navbar a {
     position: relative;
     font-size: 1.15rem;
-    color:#96a0ae;
+    color: #96a0ae;
     text-decoration: none;
     font-weight: 500;
     margin-left: 2.5rem;
@@ -119,7 +119,7 @@ p {
 
 .navbar a:hover {
 
-    color:#0ef;
+    color: #0ef;
 }
 
 .navbar a span {
@@ -253,7 +253,7 @@ p {
 
 .socialIcons a:hover {
 
-    background-color:#de96a4;
+    background-color: #de96a4;
     transition: 0.5s;
 }
 

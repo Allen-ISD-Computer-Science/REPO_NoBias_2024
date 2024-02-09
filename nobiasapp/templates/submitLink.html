@@ -14,69 +14,33 @@
             integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
         <style>
-            
+            .whitebox {
+                background-color: rgba(256, 256, 256, 0.8);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 80%;
+                padding: 15px;
+                border-radius: 5px;
+                padding: 20px;
+                gap: 50px;
+                margin: auto;
+                flex-direction: row; 
+                height: 400px;
+                margin-top: 10%;
+                margin-bottom: 10%;
+            }
+            .whitebox img{
+                width: 200px;
+                margin-right: 20px;
+            }
 
             .content-container {
                 width: 100%;
                 height: 100vh;
 
-
             }
 
-            .slides {
-
-                width: 100%;
-                height: 100vh;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 50px;
-                color: #7d3745;
-                position: relative; 
-            }
-
-            .slide1:before {
-    background-color: #0a0803; 
-}
-
-.slide2:before {
-    background-color: #96a0ae; 
-}
-
-.slide3:before {
-    background-color: #afc2cc;
-}
-
-
-            .slides img {
-
-                width: 200px;
-                border-radius: 10px;
-                margin-right: 20px;
-            }
-
-            .slides h2 {
-
-                font-size: 30px;
-                font-weight: 500;
-                max-width: 450px;
-
-            }
-
-            .slide1 {
-                background: linear-gradient(to right top, #003366, #004080, #005399, #4885b3, #9bccef);
-                background-position: 0% 70%;
-            }
-
-            .slide2 {
-                background: linear-gradient(#96a0ae, #77a2ba, #5e89ab);
-
-            }
-
-            .slide3 {
-                background: linear-gradient(#44638e, #afc2cc, #5e89ab);
-
-            }
 
             .logo img {
                 width: 100px;
@@ -113,9 +77,7 @@
 
             </nav>
         </header>
-        <div style="margin-top: 60px;">
-            <h1>NoBias</h1>
-        </div>
+        
         <div class="loader-container" id="loaderContainer">
             <div class="loader">
                 <img src="{% static 'img/backgroundloadui.png' %}" alt="Loading Image"
@@ -130,9 +92,9 @@
                     style="width:150px;height:150px;opacity:0.9;position:absolute;">
             </div>
         </div>
-
+        <h1>NoBias</h1>
         <h2>"Swipe Through Lies, with Truth Our Prize: Where Bias Hides, Our Detector Finds!"</h2>
-
+        
         <!-- Link Box -->
         <form method="post" action="{% url 'submitLink' %}" onsubmit="showLoader()"
             style="display: flex; flex-direction: column; align-items: center; padding: 20px; margin-top: 70px;">
@@ -146,17 +108,17 @@
 
 
         <div class="content-container">
-            <div class="slides slide1">
+            <div class="whitebox">
                 <img src="{% static 'img/pic-1.png' %}" alt="pic-1">
                 <h2>Detect and measure bias in your sources</h2>
             </div>
 
-            <div class="slides slide2">
+            <div class="whitebox">
                 <img src="{% static 'img/pic-2.png' %}" alt="pic-2">
                 <h2>Recieve accurate percentage scores for bias detection</h2>
             </div>
-            <div class="slides slide3">
-                <img src="{% static 'img/pic-3.png' %}" alt="pic-3" style="scale: 1.5;">
+            <div class="whitebox">
+                <img src="{% static 'img/pic-3.png' %}" alt="pic-3" style="scale: 1.5; position: inherit;">
                 <h2>User-friendly interface for effortless bias detection</h2>
             </div>
 
@@ -166,17 +128,8 @@
                 <div class="socialIcons">
                     <a href=""><i class="fa-brands fa-facebook "></i></a>
                     <a href=""><i class="fa-brands fa-instagram "></i></a>
-                    <a href=""><i class="fa-brands fa-twitter "></i></a>
-                    <a href=""><i class="fa-brands fa-google-plus "></i></a>
+                    <a href=""><i class="fa-brands fa-twitter "></i></a>    
                 </div>
-                <!-- <div class="footerNav">
-                    <ul>
-                        <li><a href="">Home</a></li>
-                        <li><a href="">About</a></li>
-                        <li><a href="">Contact Us</a></li>
-                        <li><a href="">Our Team</a></li>
-                    </ul>
-                </div> -->
 
                 <div class="footerBottom">
                     <p>Copyright &copy;2024; NoBias</p>
