@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300;1,300..800&display=swap');
 
 body {
     font-family: 'Arial', sans-serif;
@@ -23,7 +23,7 @@ body {
 }
 
 h1 {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'montserrant';
     font-size: 50px;
     text-align: center;
     color: #0a0803;
