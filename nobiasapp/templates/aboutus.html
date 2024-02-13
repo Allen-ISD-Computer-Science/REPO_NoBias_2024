@@ -50,13 +50,22 @@
         strong {
             color: #007bff;
         }
+        .logo img {
+                width: 100px;
+                float: left;
+                padding-left: 10%;
+                padding-top: 2%;
+            }
     </style>
 
     <body>
 
         <header class="header">
 
-            <a href="#" class="logo"> Logo</a>
+            <div class="logo">
+                <img src="{% static 'img/logo.png' %}" alt="1st-logo-1" style="scale: 0.8;">
+            </div>
+
 
             <input type="checkbox" id="check">
             <label for="check" class="icons">
