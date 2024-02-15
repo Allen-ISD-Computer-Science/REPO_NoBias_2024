@@ -87,7 +87,7 @@
                         style="width:20px;height:20px;opacity:0.9;"> <br>
                 </elmhover>
                 <dav>
-                    <p style="font-weight: 100;">The more grey your source has, the less bias it has in general! When finding (unbiased) sources try and find ones with the most grey.</p>
+                    <p style="font-weight: 100;position:inline;">The more grey your source has, the less bias it has in general! When finding (unbiased) sources try and find ones with the most grey.</p>
                 </dav>
             </div> <br>
             <div style="padding: 5px;"></div>
@@ -96,6 +96,93 @@
                 <div class="section grey-section"></div>
                 <div class="section green-section"></div>
             </div>
+
+            <!-- Start Speedometer -->
+
+            <div class="gauge-container">
+                <canvas id="gauge" width="250" height="200"></canvas>
+            </div>
+            <script>
+                const canvas = document.getElementById('gauge');
+                const ctx = canvas.getContext('2d');
+                const gaugeValue = {{ thisVar.0.3 }} ; // Based on the polarity ratio
+                const gaugeRangeText = document.getElementById('gaugeRangeText');
+        
+                function updateGauge() {
+                    drawGauge(gaugeValue * 100); 
+                    updateGaugeRange(gaugeValue * 100); 
+                }
+        
+                function drawGauge(value) {
+                    const centerX = canvas.width / 2;
+                    const centerY = canvas.height;
+                    const radius = canvas.width / 2 - 10;
+        
+                    // Clear canvas
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+                    // Draw gauge background
+                    ctx.beginPath();
+                    ctx.arc(centerX, centerY, radius, Math.PI, 2 * Math.PI);
+                    ctx.lineWidth = 25;
+                    ctx.strokeStyle = '#ddd';
+                    ctx.stroke();
+        
+                    // Draw gauge value
+                    const startAngle = Math.PI;
+                    const endAngle = (value / 100) * Math.PI + startAngle;
+                    ctx.beginPath();
+                    ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+                    ctx.lineWidth = 24;
+                    ctx.strokeStyle = getColor(value);
+                    ctx.stroke();
+        
+                    // Draw pointer
+                    const pointerLength = radius - 40;
+                    const pointerX = centerX + pointerLength * Math.cos(endAngle);
+                    const pointerY = centerY + pointerLength * Math.sin(endAngle);
+        
+                    ctx.beginPath();
+                    ctx.moveTo(centerX, centerY);
+                    ctx.lineTo(pointerX, pointerY);
+                    ctx.lineWidth = 15;
+                    ctx.strokeStyle = '#333';
+                    ctx.stroke();
+                }
+        
+                function getColor(value) {
+                    if (value < 20) {
+                        return '#00ff00'; // Very Positive - Green
+                    } else if (value < 40) {
+                        return '#66ff33'; // Moderate Positivity - Light Green
+                    } else if (value < 60) {
+                        return '#ffff00'; // Neutral - Yellow
+                    } else if (value < 80) {
+                        return '#ff9900'; // Moderate Negativity - Orange
+                    } else {
+                        return '#ff0000'; // Very Negative - Red
+                    }
+                }
+        
+                function updateGaugeRange(value) {
+                    if (value < 20) {
+                        gaugeRangeText.innerText = 'Low';
+                    } else if (value < 40) {
+                        gaugeRangeText.innerText = 'Low to Moderate';
+                    } else if (value < 60) {
+                        gaugeRangeText.innerText = 'Moderate';
+                    } else if (value < 80) {
+                        gaugeRangeText.innerText = 'Moderate to High';
+                    } else {
+                        gaugeRangeText.innerText = 'High';
+                    }
+                }
+        
+                // Initial draw with default value
+                updateGauge();
+            </script>
+
+            <!-- End Speedometer -->
 
             <ul style="list-style-type: none; padding: 0; ">
                 

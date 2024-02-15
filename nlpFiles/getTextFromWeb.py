@@ -80,6 +80,8 @@ def pasteText(list, link):
 
     #In the end, the average polarity score of the article is added (variables for polarity meter)
     list1 = [str(round(totNegative / count * 100, 1)) + "%",str(round(totNeutral / count * 100, 1)) + "%",str(round(totPositive / count * 100, 1)) + "%"]
+    
+    list1.append(round(totNegative/ count * 100, 1) / (round(totNegative / count * 100, 1) + round(totPositive / count * 100, 1)))
     if count != 0:
         list.insert(0,list1)
     
