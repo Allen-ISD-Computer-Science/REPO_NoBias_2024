@@ -10,6 +10,12 @@
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
     </head>
     <style>
+        .helpstuff {
+            display: flex;
+            margin:auto;
+            width:500px;
+        }
+
         .box {
             background-color: #f8f8f8;
             padding: 20px;
@@ -53,15 +59,17 @@
             color: black;
         }
         dav{
-            background: linear-gradient(to right top, #003366, #004080, #005399, #4885b3, #9bccef);
-            padding: 1px;
             display: none;
+            background: linear-gradient(to right top, #003366, #004080, #005399, #4885b3, #9bccef);
+            padding: 10px;
             border-radius: 15px;
             width: 50%;
+            height: 50%;
         }
 
         elmhover:hover + dav {
-            display: block;
+            display: flex;
+            align-items: right;
         }
 
     </style>
@@ -72,14 +80,16 @@
         <div class="box">
             <h2>Successfully submitted links</h2>
             <br>
-            <h2 style="font-weight: 200; text-align: center ;"> Polarity Bar</h2> <br>
-            <elmhover>
-                <img src="{% static 'img/help.png' %}" alt="Loading Image"
-                    style="width:20px;height:20px;opacity:0.9;float:center;">
-            </elmhover>
-            <dav>
-                <p style="font-weight: 100; text-align: center;">The more grey your source has, the less bias it has in general! When finding (unbiased) sources try and find ones with the most grey.</p>
-            </dav>
+            <div class="helpstuff">
+                <h2 style="font-weight: 200;"> Polarity Bar </h2> <br>
+                <elmhover>
+                    <img src="{% static 'img/help.png' %}" alt="Loading Image"
+                        style="width:20px;height:20px;opacity:0.9;"> <br>
+                </elmhover>
+                <dav>
+                    <p style="font-weight: 100;">The more grey your source has, the less bias it has in general! When finding (unbiased) sources try and find ones with the most grey.</p>
+                </dav>
+            </div> <br>
             <div style="padding: 5px;"></div>
             <div class="polarity-bar">
                 <div class="section red-section"></div>
