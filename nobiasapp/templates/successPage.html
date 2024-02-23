@@ -16,6 +16,36 @@
             width:500px;
         }
 
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+          
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background: radial-gradient(in oklab, #5a6068, #7a878e, #415f77 );
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            opacity:0.77;
+           
+            position: absolute;
+            position: right;
+            z-index: 1;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+        }
+        
+        .hoverstuff {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         .box {
             background-color: #f8f8f8;
             padding: 20px;
@@ -58,19 +88,6 @@
         h2{
             color: black;
         }
-        dav{
-            display: none;
-            background: linear-gradient(to right top, #003366, #004080, #005399, #4885b3, #9bccef);
-            padding: 10px;
-            border-radius: 15px;
-            width: 50%;
-            height: 50%;
-        }
-
-        elmhover:hover + dav {
-            display: flex;
-            align-items: right;
-        }
 
     </style>
 
@@ -80,21 +97,30 @@
         <div class="box">
             <h2>Successfully submitted links</h2>
             <br>
+            <div class="hoverstuff">
+            <h2 style="font-weight: 200;"> Polarity Bar </h2> <br>
+            <div class="tooltip">
+                <img src="{% static 'img/help.png' %}" alt="Loading Image"
+                    style="width:20px;height:20px;opacity:0.9;margin-left:20px">
+                    <span class="tooltiptext"> The more grey your source has, the less bias it has in general! When finding (unbiased) sources try and find ones with the most grey. </span>
+            </div>
+            </div>
             <div class="helpstuff">
-                <h2 style="font-weight: 200;"> Polarity Bar </h2> <br>
-                <elmhover>
-                    <img src="{% static 'img/help.png' %}" alt="Loading Image"
-                        style="width:20px;height:20px;opacity:0.9;"> <br>
-                </elmhover>
-                <dav>
-                    <p style="font-weight: 100;position:inline;">The more grey your source has, the less bias it has in general! When finding (unbiased) sources try and find ones with the most grey.</p>
-                </dav>
+            
             </div> <br>
-            <div style="padding: 5px;"></div>
             <div class="polarity-bar">
                 <div class="section red-section"></div>
                 <div class="section grey-section"></div>
                 <div class="section green-section"></div>
+            </div>
+
+            <div class="hoverstuff">
+                <h2 style="font-weight: 200;"> Biasometer </h2> <br>
+                <div class="tooltip">
+                    <img src="{% static 'img/help.png' %}" alt="Loading Image"
+                        style="width:20px;height:20px;opacity:0.9;margin-left:20px">
+                        <span class="tooltiptext"> The more left the Biasometer is, the less bias it has. The more right the Biasometer is, the more bias it has. </span>
+                </div>
             </div>
 
             <!-- Start Speedometer -->
