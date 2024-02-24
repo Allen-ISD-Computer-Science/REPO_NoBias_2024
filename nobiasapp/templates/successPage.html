@@ -25,7 +25,7 @@
             visibility: hidden;
             width: 200px;
             background-color: white;
-            background: #415f77
+            background: #415f77;
             color: #fff;
             text-align: center;
             padding: 5px 0;
@@ -245,9 +245,8 @@
 
             <ul style="list-style-type: none; padding: 0; ">
                 
-                {% for link in thisVar %}
-                <li
-                    style="font-family: 'Open Sans', sans-serif; color: #003366; word-wrap: break-word;line-height: 40px;">
+                {% for link in highValuedList %}
+                <li style="font-family: 'Open Sans', sans-serif; color: #003366; word-wrap: break-word;line-height: 40px;">
                     {{ link }}
                 </li>
                 {% endfor %}

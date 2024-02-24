@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from nlpFiles.getTextFromWeb import pasteText
+from nlpFiles.getTextFromWeb import polarityRating, highRatedSent
 from .forms import SubmitLinkForm
 
 def submitLink(request):
@@ -10,9 +10,10 @@ def submitLink(request):
             thisVar = link_object.link  # Access the link and store it in thisVar
             # You can now use thisVar for other Python code
             paragraph = []
-            pasteText(paragraph, thisVar)
+            polarityRating(paragraph, thisVar)
+            highValuedList = highRatedSent(paragraph)
             # Redirect or render a success page
-            return render(request, 'successPage.html', {'thisVar': paragraph})
+            return render(request, 'successPage.html', {'thisVar': paragraph, "highValuedList": highValuedList})
     else:
         form = SubmitLinkForm()
 
