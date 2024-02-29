@@ -7,6 +7,10 @@ from bs4 import BeautifulSoup
 from nltk.corpus import wordnet as wn
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
+#!!!!! IMPORTANT !!!!!
+# GOING TO REWORK BIAS DETECTION TO ACTUALLY DETECT BIAS, CONCERNING WHERE IT IS IN THE TEXT AND IT'S TYPE(BIAS TOWARDS WHO?, WHAT KIND OF BIAS?, ETC)
+#!!!!! IMPORTANT !!!!!
+
 def percentToInt(list):
     # Remove '%' from strings and convert to float
     data_without_percentages = [float(item.strip('%')) if isinstance(item, str) else item for item in list]
