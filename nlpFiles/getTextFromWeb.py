@@ -68,10 +68,10 @@ def highRatedSent(paraList):
     avgPositive = avgPol[2]
     for tupIndex in range(len(polarityList)):
         if polarityList[tupIndex][2] * 100 > avgPositive:
-            highList.append("*" * 30 + "Above average positive text" + "*" * 80)
+            highList.append("+" + "Above average positive text")
             highList.append(paraList[tupIndex + 2])
         elif polarityList[tupIndex][0] * 100 > avgNegative:
-            highList.append("*" * 30 + "Above average negative text" + "*" * 80)
+            highList.append("-" + "Above average negative text")
             highList.append(paraList[tupIndex + 2])
     return highList
 def polarityRating(list, link):

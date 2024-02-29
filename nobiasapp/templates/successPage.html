@@ -246,10 +246,20 @@
             <ul style="list-style-type: none; padding: 0; ">
                 
                 {% for link in highValuedList %}
-                <li style="font-family: 'Open Sans', sans-serif; color: #003366; word-wrap: break-word;line-height: 40px;">
-                    {{ link }}
-                </li>
-                {% endfor %}
+    {% if "+" in link %}
+        <li style="font-family: 'Open Sans', sans-serif; color: green; word-wrap: break-word;line-height: 40px;">
+            {{ link }}
+        </li>
+    {% elif "-" in link %}
+        <li style="font-family: 'Open Sans', sans-serif; color: red; word-wrap: break-word;line-height: 40px;">
+            {{ link }}
+        </li>
+    {% else %}
+        <li style="font-family: 'Open Sans', sans-serif; color: #003366; word-wrap: break-word;line-height: 40px;">
+            {{ link }}
+        </li>
+    {% endif %}
+{% endfor %}
             </ul>
         </div>
 
