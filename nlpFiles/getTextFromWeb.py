@@ -1,4 +1,6 @@
 import nltk
+import transformers
+from transformers import AutoTokenizer, TFAutoModelForSequenceClassification, pipeline
 from nltk.tokenize import sent_tokenize, word_tokenize
 import urllib.request
 from selenium import webdriver
@@ -6,6 +8,10 @@ import os
 from bs4 import BeautifulSoup
 from nltk.corpus import wordnet as wn
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+
+tokenizer = AutoTokenizer.from_pretrained("d4data/bias-detection-model")
+model = TFAutoModelForSequenceClassification.from_pretrained("d4data/bias-detection-model")
+classifier = pipeline('text-classification', model=model, tokenizer=tokenizer)
 
 #!!!!! IMPORTANT !!!!!
 # GOING TO REWORK BIAS DETECTION TO ACTUALLY DETECT BIAS, CONCERNING WHERE IT IS IN THE TEXT AND IT'S TYPE(BIAS TOWARDS WHO?, WHAT KIND OF BIAS?, ETC)
@@ -82,12 +88,14 @@ def polarityRating(list, link):
     analyzer = SentimentIntensityAnalyzer()
 
     wantedText = webScrape(link)
-    
     # Declare variables for average polarity
     totNegative = 0
     totNeutral = 0
     totPositive = 0
     count = 0
+    total = 0.00
+    val = 0.00
+    temp=''
     sentPolarityList = []
     for para in wantedText:
         sentences = sent_tokenize(para.text.strip())
@@ -95,24 +103,57 @@ def polarityRating(list, link):
         for sent in sentences:
             # tagged = nltk.pos_tag(word_tokenize(sent))
             if sent != "":
-                tagged = analyzer.polarity_scores(sent)
+                # tagged = analyzer.polarity_scores(sent)
+                tagged = {'pos': [], 'neu': [], 'neg': []}
                 list.append(sent)
-                totNegative += tagged["neg"]
-                totNeutral += tagged["neu"]
-                totPositive += tagged["pos"]
+                temp = classifier(sent)[0]
+                if temp["label"]=="Non-biased":
+                    total += temp["score"]
+                    val = temp["score"]
+                else:
+                    total += 1-temp["score"]
+                    val = 1-temp["score"]
+                if val < .40:
+                    if 'pos' in tagged.keys():
+                        tagged['pos'].append(0.00)
+                    if 'neg' in tagged.keys():
+                        tagged['neg'].append(val)
+                    if 'neu' in tagged.keys():
+                        tagged['neu'].append(0.00)
+                elif val>=.40 and val<=.60:
+                    if 'pos' in tagged.keys():
+                        tagged['pos'].append(0.00)
+                    if 'neg' in tagged.keys():
+                        tagged['neg'].append(0.00)
+                    if 'neu' in tagged.keys():
+                        tagged['neu'].append(val)
+                elif val>.60:
+                    if 'pos' in tagged.keys():
+                        tagged['pos'].append(val)
+                    if 'neg' in tagged.keys():
+                        tagged['neg'].append(0.00)
+                    if 'neu' in tagged.keys():
+                        tagged['neu'].append(0.00)
+                totNegative += tagged["neg"][-1]
+                totNeutral += tagged["neu"][-1]
+                totPositive += tagged["pos"][-1]
                 #Appends polarity of each sentence
-                sentPolarityList.append((tagged["neg"], tagged["neu"], tagged["pos"]))
+                sentPolarityList.append((tagged["neg"][-1], tagged["neu"][-1], tagged["pos"][-1]))
                 # Adds to the total polarity based on the key of the dictionary
                 count += 1
         #Will stop once reaches the end of the article (Reuters)
         if "Reporting by" in sentInPara or "Get all the stories you need" in sentInPara:
             break
-        
-    list.insert(0, sentPolarityList)
-    #In the end, the average polarity score of the article is added (variables for polarity meter)
-    list1 = [str(round(totNegative / count * 100, 1)) + "%",str(round(totNeutral / count * 100, 1)) + "%",str(round(totPositive / count * 100, 1)) + "%"]
     
-    list1.append(round(totNegative/ count * 100, 1) / (round(totNegative / count * 100, 1) + round(totPositive / count * 100, 1)))
+    rtotal = total/count
+    list.insert(0, sentPolarityList)
+    k=totPositive+totNegative+totNeutral
+    l=(2*(100-k))/k
+    m=(2+l)
+    #In the end, the average polarity score of the article is added (variables for polarity meter)
+    list1 = [str(round((totNegative*m)/2, 1)) + "%",str(round((totNeutral*m)/2, 1)) + "%",str(round((totPositive*m)/2, 1)) + "%"]
+    #list1 = [str(l) + "%",str(k) + "%",str(m) + "%"]
+    list1.append(round((1-rtotal),4))
     if count != 0:
         list.insert(0,list1)
  
