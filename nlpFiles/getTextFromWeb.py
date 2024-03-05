@@ -148,10 +148,9 @@ def polarityRating(list, link):
     rtotal = total/count
     list.insert(0, sentPolarityList)
     k=totPositive+totNegative+totNeutral
-    l=(2*(100-k))/k
-    m=(2+l)
+    scale_value=(2+(2*(100-k))/k)/2
     #In the end, the average polarity score of the article is added (variables for polarity meter)
-    list1 = [str(round((totNegative*m)/2, 1)) + "%",str(round((totNeutral*m)/2, 1)) + "%",str(round((totPositive*m)/2, 1)) + "%"]
+    list1 = [str(round((totNegative*scale_value), 1)) + "%",str(round((totNeutral*scale_value), 1)) + "%",str(round((totPositive*scale_value), 1)) + "%"]
     #list1 = [str(l) + "%",str(k) + "%",str(m) + "%"]
     list1.append(round((1-rtotal),4))
     if count != 0:
