@@ -78,7 +78,7 @@ def highRatedSent(paraList):
     avgNon = avgPol[1]
     for tupIndex in range(len(polarityList)):
         if polarityList[tupIndex][0] == "Bias" and polarityList[tupIndex][1] * 100 > avgBias:
-            highList.append(paraList[tupIndex + 2])
+            highList.append(paraList[tupIndex + 2] + f" {polarityList[tupIndex][1]}")
     return highList
 def polarityRating(list, link):
     analyzer = SentimentIntensityAnalyzer()
@@ -121,6 +121,3 @@ def polarityRating(list, link):
     overallList = [str(round(totBias / count * 100, 1)) + "%", str(round(totNon / count * 100, 1)) + "%", str(round(totPos / polarityCount * 100, 1)) + "%", str(round(totNeg / polarityCount * 100, 1)) + "%"]
     if count != 0:
         list.insert(0,overallList)
-list1 = []
-polarityRating(list1, "https://abcnews.go.com/Politics/trump-defendants-post-bond-full-464-million-judgment/story?id=108031376")
-print(list1)
