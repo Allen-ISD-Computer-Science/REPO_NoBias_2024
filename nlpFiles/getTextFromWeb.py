@@ -78,7 +78,7 @@ def highRatedSent(paraList):
     avgNon = avgPol[1]
     for tupIndex in range(len(polarityList)):
         if polarityList[tupIndex][0] == "Bias" and polarityList[tupIndex][1] * 100 > avgBias:
-            highList.append(paraList[tupIndex + 2] + f" {polarityList[tupIndex][1]}")
+            highList.append(str(round(polarityList[tupIndex][1] * 100, 1)) + "% Biased: " + paraList[tupIndex + 2] )
     return highList
 def polarityRating(list, link):
     analyzer = SentimentIntensityAnalyzer()
