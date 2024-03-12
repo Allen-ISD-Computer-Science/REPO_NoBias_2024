@@ -9,9 +9,7 @@ from bs4 import BeautifulSoup
 from nltk.corpus import wordnet as wn
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
-tokenizer = AutoTokenizer.from_pretrained("d4data/bias-detection-model")
-model = TFAutoModelForSequenceClassification.from_pretrained("d4data/bias-detection-model")
-classifier = pipeline('text-classification', model=model, tokenizer=tokenizer)
+
 
 #!!!!! IMPORTANT !!!!!
 # GOING TO REWORK BIAS DETECTION TO ACTUALLY DETECT BIAS, CONCERNING WHERE IT IS IN THE TEXT AND IT'S TYPE(BIAS TOWARDS WHO?, WHAT KIND OF BIAS?, ETC)
@@ -81,6 +79,10 @@ def highRatedSent(paraList):
             highList.append(str(round(polarityList[tupIndex][1] * 100, 1)) + "% Biased: " + paraList[tupIndex + 2] )
     return highList
 def polarityRating(list, link):
+    # Starting up our models and analyzers
+    tokenizer = AutoTokenizer.from_pretrained("d4data/bias-detection-model")
+    model = TFAutoModelForSequenceClassification.from_pretrained("d4data/bias-detection-model")
+    classifier = pipeline('text-classification', model=model, tokenizer=tokenizer)
     analyzer = SentimentIntensityAnalyzer()
 
     wantedText = webScrape(link)
