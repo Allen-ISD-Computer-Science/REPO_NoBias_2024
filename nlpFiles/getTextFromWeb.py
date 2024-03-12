@@ -74,14 +74,10 @@ def highRatedSent(paraList):
     highList = []
     polarityList = paraList[1]
     avgPol = percentToInt(paraList[0])
-    avgNegative = avgPol[0]
-    avgPositive = avgPol[2]
+    avgBias = avgPol[0]
+    avgNon = avgPol[1]
     for tupIndex in range(len(polarityList)):
-        if polarityList[tupIndex][2] * 100 > avgPositive:
-            highList.append("+" + "Above average positive text")
-            highList.append(paraList[tupIndex + 2])
-        elif polarityList[tupIndex][0] * 100 > avgNegative:
-            highList.append("-" + "Above average negative text")
+        if polarityList[tupIndex][0] == "Bias" and polarityList[tupIndex][1] * 100 > avgBias:
             highList.append(paraList[tupIndex + 2])
     return highList
 def polarityRating(list, link):
@@ -89,70 +85,42 @@ def polarityRating(list, link):
 
     wantedText = webScrape(link)
     # Declare variables for average polarity
-    totNegative = 0
-    totNeutral = 0
-    totPositive = 0
     count = 0
-    total = 0.00
-    val = 0.00
+    polarityCount = 0
     temp=''
-    sentPolarityList = []
+    totBias = 0
+    totNon = 0
+    totPos = 0
+    totNeg = 0
+    sentBiasList = []
     for para in wantedText:
         sentences = sent_tokenize(para.text.strip())
         sentInPara = ""
         for sent in sentences:
-            # tagged = nltk.pos_tag(word_tokenize(sent))
             if sent != "":
-                # tagged = analyzer.polarity_scores(sent)
-                tagged = {'pos': [], 'neu': [], 'neg': []}
                 list.append(sent)
                 temp = classifier(sent)[0]
-                if temp["label"]=="Non-biased":
-                    total += temp["score"]
-                    val = temp["score"]
+                if temp['label'] == "Non-biased":
+                    sentBiasList.append(("Non-biased", temp["score"]))
+                    totBias += 1 - temp["score"]
+                    totNon += temp["score"]
                 else:
-                    total += 1-temp["score"]
-                    val = 1-temp["score"]
-                if val < .40:
-                    if 'pos' in tagged.keys():
-                        tagged['pos'].append(0.00)
-                    if 'neg' in tagged.keys():
-                        tagged['neg'].append(val)
-                    if 'neu' in tagged.keys():
-                        tagged['neu'].append(0.00)
-                elif val>=.40 and val<=.60:
-                    if 'pos' in tagged.keys():
-                        tagged['pos'].append(0.00)
-                    if 'neg' in tagged.keys():
-                        tagged['neg'].append(0.00)
-                    if 'neu' in tagged.keys():
-                        tagged['neu'].append(val)
-                elif val>.60:
-                    if 'pos' in tagged.keys():
-                        tagged['pos'].append(val)
-                    if 'neg' in tagged.keys():
-                        tagged['neg'].append(0.00)
-                    if 'neu' in tagged.keys():
-                        tagged['neu'].append(0.00)
-                totNegative += tagged["neg"][-1]
-                totNeutral += tagged["neu"][-1]
-                totPositive += tagged["pos"][-1]
-                #Appends polarity of each sentence
-                sentPolarityList.append((tagged["neg"][-1], tagged["neu"][-1], tagged["pos"][-1]))
+                    tagged = analyzer.polarity_scores(sent)
+                    if tagged["pos"] > tagged['neg']:
+                        sentBiasList.append(("Bias", temp["score"], "pos"))
+                    else:
+                        sentBiasList.append(("Bias", temp["score"], "neg"))
+    
+                    totBias += temp["score"]
+                    totNon += 1 - temp["score"]
+                    totPos, totNeg = totPos + tagged["pos"], totNeg + tagged["neg"]
+                    polarityCount += 1
                 # Adds to the total polarity based on the key of the dictionary
                 count += 1
-        #Will stop once reaches the end of the article (Reuters)
-        if "Reporting by" in sentInPara or "Get all the stories you need" in sentInPara:
-            break
-    
-    rtotal = total/count
-    list.insert(0, sentPolarityList)
-    k=totPositive+totNegative+totNeutral
-    scale_value=(2+(2*(100-k))/k)/2
-    #In the end, the average polarity score of the article is added (variables for polarity meter)
-    list1 = [str(round((totNegative*scale_value), 1)) + "%",str(round((totNeutral*scale_value), 1)) + "%",str(round((totPositive*scale_value), 1)) + "%"]
-    #list1 = [str(l) + "%",str(k) + "%",str(m) + "%"]
-    list1.append(round((1-rtotal),4))
+    list.insert(0, sentBiasList)
+    overallList = [str(round(totBias / count * 100, 1)) + "%", str(round(totNon / count * 100, 1)) + "%", str(round(totPos / polarityCount * 100, 1)) + "%", str(round(totNeg / polarityCount * 100, 1)) + "%"]
     if count != 0:
-        list.insert(0,list1)
- 
+        list.insert(0,overallList)
+list1 = []
+polarityRating(list1, "https://abcnews.go.com/Politics/trump-defendants-post-bond-full-464-million-judgment/story?id=108031376")
+print(list1)
