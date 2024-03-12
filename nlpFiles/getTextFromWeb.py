@@ -121,5 +121,6 @@ def polarityRating(list, link):
                 count += 1
     list.insert(0, sentBiasList)
     overallList = [str(round(totBias / count * 100, 1)) + "%", str(round(totNon / count * 100, 1)) + "%", str(round(totPos / polarityCount * 100, 1)) + "%", str(round(totNeg / polarityCount * 100, 1)) + "%"]
+    overallList.append(round(totBias/ count * 100, 1) / (round(totNon / count * 100, 1) + round(totBias / count * 100, 1)))
     if count != 0:
         list.insert(0,overallList)
