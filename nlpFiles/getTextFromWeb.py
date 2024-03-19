@@ -78,6 +78,7 @@ def highRatedSent(paraList):
         if polarityList[tupIndex][0] == "Bias" and polarityList[tupIndex][1] * 100 > avgBias:
             highList.append(str(round(polarityList[tupIndex][1] * 100, 1)) + "% Biased: " + paraList[tupIndex + 2] )
     return highList
+
 def polarityRating(list, link):
     # Starting up our models and analyzers
     tokenizer = AutoTokenizer.from_pretrained("d4data/bias-detection-model")
@@ -97,7 +98,6 @@ def polarityRating(list, link):
     sentBiasList = []
     for para in wantedText:
         sentences = sent_tokenize(para.text.strip())
-        sentInPara = ""
         for sent in sentences:
             if sent != "":
                 list.append(sent)
@@ -120,7 +120,7 @@ def polarityRating(list, link):
                 # Adds to the total polarity based on the key of the dictionary
                 count += 1
     list.insert(0, sentBiasList)
-    overallList = [str(round(totBias / count * 100, 1)) + "%", str(round(totNon / count * 100, 1)) + "%", str(round(totPos / polarityCount * 100, 1)) + "%", str(round(totNeg / polarityCount * 100, 1)) + "%"]
-    overallList.append(round(totBias/ count * 100, 1) / (round(totNon / count * 100, 1) + round(totBias / count * 100, 1)))
+    overallList = [str(round(totBias / count * 100, 1)) + "%", str(round(totNon / count * 100, 1)) + "%", str(round(totPos / polarityCount * 100, 1)) + "%", str(round(totNeg / polarityCount * 100, 1)) + "%" , round(totNeg / polarityCount * 100, 1)]
+    overallList.append(round(totBias / count * 100, 0))
     if count != 0:
         list.insert(0,overallList)
