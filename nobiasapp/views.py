@@ -21,3 +21,5 @@ def submitLink(request):
 
 def aboutus(request):
     return render(request, 'aboutus.html')
+def tech(request):
+    return render(request, 'tech.html')

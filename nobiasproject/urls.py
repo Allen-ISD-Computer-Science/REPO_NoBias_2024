@@ -21,7 +21,6 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path("", include("nobiasapp.urls")),
-    
     path('admin/', admin.site.urls),
     
 ] 

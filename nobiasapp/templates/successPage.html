@@ -10,6 +10,12 @@
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
     </head>
     <style>
+        .logo img {
+                width: 100px;
+                float: left;
+                padding-left: 10%;
+                padding-top: 2%;
+            }
         canvas {
         position: relative;
         top: 50%;
@@ -108,29 +114,41 @@
     </style>
 
     <body>
-        <h1> Hello </h1>
+        <header class="header">
 
+            <div class="logo">
+                <img src="{% static 'img/logo.png' %}" alt="1st-logo-1" style="scale: 0.8;">
+            </div>
+
+
+            <input type="checkbox" id="check">
+            <label for="check" class="icons">
+                <i class="bx bx-menu" id="menu-icon"></i>
+                <i class="bx bx-x" id="close-icon"></i>
+
+
+            </label>
+            <nav class="navbar">
+                <a href="../" style="--i:0;">Home<span></span></a>
+                <a href="aboutus" style="--i:1;">About Us<span></span></a>
+                <a href="#" style="--i:2;"> Contacts<span></span></a>
+                <a href="tech" style="--i:3;"> How We Detect Bias<span></span></a>
+            </nav>
+        </header>
+        <br><br>
         <div class="box">
-            <br>
-            <div class="hoverstuff">
-            <h2 style="font-weight: 200;"> Polarity Bar </h2>
-            <div class="tooltip">
-                <img src="{% static 'img/help.png' %}" alt="Loading Image"
-                    style="width:20px;height:20px;opacity:0.9;margin-left:20px">
-                    <span class="tooltiptext"> The more green your source has, the less bias it has! When finding (unbiased) sources try and find ones with the most green. </span>
-            </div>
-            </div>
+            
             <div class="helpstuff">
             
             </div> <br>
-            <div class="polarity-bar">
+            <!-- <div class="polarity-bar">
                 <div class="section red-section"></div>
                 <div class="section grey-section"></div>
                 <div class="section green-section"></div>
-            </div>
+            </div> -->
 
             <div class="hoverstuff">
-                <h2 style="font-weight: 200;"> Biasometer </h2> <br>
+                <h2 style="font-weight: 200;"> Bias Meter </h2> <br>
                 <div class="tooltip">
                     <img src="{% static 'img/help.png' %}" alt="Loading Image"
                         style="width:20px;height:20px;opacity:0.9;margin-left:20px">
