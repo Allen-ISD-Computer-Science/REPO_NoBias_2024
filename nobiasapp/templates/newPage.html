@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoBias</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #F5F5F5; /* beige background */
+        }
+
+        .navbar {
+            background-color: #E8E8E8; /* light grey navbar */
+            overflow: hidden;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: #333; /* dark grey link color */
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd; /* grey background on hover */
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .search-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .search-container input[type=text] {
+            padding: 10px;
+            width: 50%;
+            border-radius: 5px;
+            border: 1px solid #ccc; /* light grey border */
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        .search-container input[type=submit] {
+            background-color: #4CAF50; /* green submit button */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <a href="#home">Home</a>
+    <a href="#about">About Us</a>
+    <a href="#contact">Contacts</a>
+    <a href="#services">Services</a>
+</div>
+
+<div class="content">
+    <h1>Welcome to NoBias</h1>
+    <p>NoBias is a program that will detect bias in a news article. We will detect bias by analyzing the tone, sentiment, and diction of a news article.</p>
+    <div class="search-container">
+        <form action="/detect-bias" method="get">
+            <input type="text" placeholder="Insert URL here..." name="url" required>
+            <input type="submit" value="Detect Bias">
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
+
+
+
