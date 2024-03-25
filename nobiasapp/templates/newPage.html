@@ -135,8 +135,8 @@
 
       
         footer {
-            background-color: #333; 
-            color: #ccc;
+            background-color: #111; /* Dark footer */
+            color: #ccc; /* Light grey text */
             text-align: center;
             padding: 20px 0;
             position: fixed;
@@ -150,6 +150,41 @@
             color: #fff;
             margin: 0 10px;
             font-size: 20px;
+        }
+        .content {
+            padding: 100px 20px 20px;
+            text-align: center;
+        }
+
+        .feature {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .feature-item {
+            width: 300px;
+            padding: 20px;
+            margin: 20px;
+            background-color: #fff; 
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-item h3 {
+            color: #555; /* Dark grey testimonial text color */
+            font-style: italic;
+        }
+
+        .feature-item p {
+            margin-top: 20px;
+            color: #777; /
         }
     </style>
 </head>
@@ -194,26 +229,31 @@
                 <input type="text" placeholder="Search...">
                 <button type="submit"><i class="fas fa-search"></i></button>
             </div>   -->
-        <div class="testimonials">
-            <div class="testimonial">
-                <p>"I've been using NoBias for a while now, and it's been incredibly helpful in identifying bias in
-                    news articles. Highly recommended!"</p>
-                <p class="testimonial-author">- John Doe</p>
-            </div>
-            <div class="testimonial">
-                <p>"As a journalist, maintaining objectivity is crucial. NoBias has become an indispensable tool in my
-                    arsenal for ensuring unbiased reporting."</p>
-                <p class="testimonial-author">- Jane Smith</p>
-            </div>
-            <div class="testimonial">
-                <p>"NoBias has exceeded my expectations. Its accuracy and efficiency in detecting bias make it a
-                    standout product in the field."</p>
-                <p class="testimonial-author">- Michael Johnson</p>
+            <div class="feature">
+                <div class="feature-item">
+                    <h3>Detect and Measure Bias</h3>
+                    <p>Our advanced algorithms detect and measure bias in your sources with high accuracy.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Accurate Percentage Scores</h3>
+                    <p>Receive precise percentage scores for bias detection, ensuring reliable analysis.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>User-Friendly Interface</h3>
+                    <p>Effortlessly detect bias with our intuitive and user-friendly interface.</p>
+                </div>
             </div>
         </div>
-    </div>
 
     <footer>
         <div class="socialIcons">
             <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+        
+    </footer>
+
+</body>
+
+</html>
