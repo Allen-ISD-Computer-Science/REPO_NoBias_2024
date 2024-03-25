@@ -1,20 +1,19 @@
 {% load static %}
-
+<!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
+<head>
+    <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <br><br><br><br><br>
         <title>NoBias</title>
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
+        <link rel="stylesheet" href="{% static 'css/loader.css' %}">
         <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
             integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
-    </head>
     <style>
-        section {
+       section {
             background-color: #f8f8f8;
             padding: 20px;
             border-radius: 10px;
@@ -50,92 +49,192 @@
         strong {
             color: #007bff;
         }
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5; 
+            color: #333;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 0;
+        }
+
+        
+        .navbar {
+            background-color: #333  ; 
+            padding: 20px 0;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            display: inline-block;
+            color: #fff;
+            text-decoration: none;
+            margin: 0 20px;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #ff7b00;
+        }
+
         .logo img {
                 width: 100px;
                 float: left;
-                padding-left: 10%;
+                padding-left: 9%;
                 padding-top: 2%;
             }
+
+        .search-bar {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .search-bar input[type="text"] {
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            background-color: #fff; 
+            color: #333; 
+            width: 250px;
+            transition: width 0.3s;
+        }
+
+        .search-bar input[type="text"]:focus {
+            width: 300px;
+            outline: none;
+        }
+
+        .search-bar button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            background-color: #ff7b00; 
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .search-bar button:hover {
+            background-color: #e66000; 
+        }
+
+        
+        .content {
+            padding: 100px 20px 20px;
+            text-align: center;
+        }
+
+        .description {
+            margin-top: 50px;
+        }
+
+       
+        .testimonials {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .testimonial {
+            width: 300px;
+            padding: 20px;
+            margin: 20px;
+            background-color: #fff; 
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .testimonial:hover {
+            transform: translateY(-10px);
+        }
+
+        .testimonial p {
+            color: #555;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            margin-top: 20px;
+            color: #777;
+        }
+
+      
+        footer {
+            background-color: #333; 
+            color: #ccc;
+            text-align: center;
+            padding: 20px 0;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .socialIcons a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 20px;
+        }
     </style>
+</head>
 
-    <body>
+<body>
 
-        <header class="header">
+    <header class="header">
+        
 
-            <div class="logo">
-                <img src="{% static 'img/logo.png' %}" alt="1st-logo-1" style="scale: 0.8;">
-            </div>
+        <nav class="navbar">
+            <a href="home" style="--i:0;">Home<span></span></a>
+            <a href="aboutus" style="--i:1;">About Us<span></span></a>
+            <a href="#" style="--i:2;">Contacts<span></span></a>
+            <a href="tech" style="--i:3;">How We Detect Bias<span></span></a>
+        </nav>
 
+        
+    </header>
 
-            <input type="checkbox" id="check">
-            <label for="check" class="icons">
-                <i class="bx bx-menu" id="menu-icon"></i>
-                <i class="bx bx-x" id="close-icon"></i>
+    <section>
+        <h1 style="text-align: center; color: #333;">About Us</h1> <br>
+        <h2> Vision Statement</h2>
+        <p> NoBias is a program that will detect bias in a news article. We will detect bias by analyzing the
+            tone, sentiment, and diction of the news article. A user will submit a web link to their desired
+            news article and our program will return an in-depth analysis of the article: summary of the news
+            article, heavy tone words, different political sides, sentiment analysis, and a bias meter.
 
-
-            </label>
-            <nav class="navbar">
-                <a href="../" style="--i:0;">Home<span></span></a>
-                <a href="aboutus" style="--i:1;">About Us<span></span></a>
-                <a href="#" style="--i:2;"> Contacts<span></span></a>
-                <a href="tech" style="--i:3;">How We Detect Bias<span></span></a>
-            </nav>
-        </header>
-
-        <section>
-            <h1 style="text-align: center; color: #333;">About Us</h1> <br>
-            <h2> Vision Statement</h2>
-            <p> NoBias is a program that will detect bias in a news article. We will detect bias by analyzing the
-                tone, sentiment, and diction of the news article. A user will submit a web link to their desired
-                news article and our program will return an in-depth analysis of the article: summary of the news
-                article, heavy tone words, different political sides, sentiment analysis, and a bias meter.
-
-            </p>
+        </p>
 
 
 
-            <h2>Our Team</h2>
-            <p>Welcome to NoBias, where we are dedicated to unravel bias in news articles. Meet our talented team:
-            </p>
+        <h2>Our Team</h2>
+        <p>Welcome to NoBias, where we are dedicated to unravel bias in news articles. Meet our talented team:
+        </p>
 
-            <ul>
-                <li><strong>Product Manager:</strong> Omer Erturk</li>
-                <li><strong>Project Manager:</strong> Sriram Maramganti</li>
-                <li><strong>Quality Assurance Analytics:</strong> Piper Paradise</li>
-                <li><strong>UI/UX Designer:</strong> Zaenb Al-Ameri</li>
-                <li><strong>Release Manager:</strong> Danyal Ahmed</li>
-                <li><strong>Database Analytics:</strong> Ziad Hamam</li>
-            </ul>
+        <ul>
+            <li><strong>Product Manager:</strong> Omer Erturk</li>
+            <li><strong>Project Manager:</strong> Sriram Maramganti</li>
+            <li><strong>Quality Assurance Analytics:</strong> Piper Paradise</li>
+            <li><strong>UI/UX Designer:</strong> Zaenb Al-Ameri</li>
+            <li><strong>Release Manager:</strong> Danyal Ahmed</li>
+            <li><strong>Database Analytics:</strong> Ziad Hamam</li>
+        </ul>
 
-            <p>Together, we strive to ensure to uncover any bias in news articles and provide users with the truth.
-            </p>
+        <p>Together, we strive to ensure to uncover any bias in news articles and provide users with the truth.
+        </p>
 
-        </section>
+    </section>
 
-
-        <footer>
-            <div class="footerContainer">
-                <div class="socialIcons">
-                    <a href=""><i class="fa-brands fa-facebook "></i></a>
-                    <a href=""><i class="fa-brands fa-instagram "></i></a>
-                    <a href=""><i class="fa-brands fa-twitter "></i></a>
-                    <a href=""><i class="fa-brands fa-google-plus "></i></a>
-                </div>
-                <!-- <div class="footerNav">
-                    <ul>
-                        <li><a href="">Home</a></li>
-                        <li><a href="">About</a></li>
-                        <li><a href="">Contact Us</a></li>
-                        <li><a href="">Our Team</a></li>
-                    </ul>
-                </div> -->
-
-                <div class="footerBottom">
-
-                    <p>Copyright &copy;2024; NoBias</p>
-
-                </div>
-        </footer>
-    </body>
-
-</html>
+    <footer>
+        <div class="socialIcons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i

@@ -1,26 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300;1,300..800&display=swap');
 
-body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(to right top, #96a0ae, #afc2cc, #5e89ab, #4da9b7, #de96a4);
-    background-size: 400% 400%;
-    /* min-height: 100vh; */
-    animation: gradientAnimation 5s ease infinite;
-}
-
-@keyframes gradientAnimation {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
-}
 
 h1 {
     font-family: 'montserrant';
