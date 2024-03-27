@@ -195,7 +195,7 @@
         
 
         <nav class="navbar">
-            <a href="home" style="--i:0;">Home<span></span></a>
+            <a href="../" style="--i:0;">Home<span></span></a>
             <a href="aboutus" style="--i:1;">About Us<span></span></a>
             <a href="#" style="--i:2;">Contacts<span></span></a>
             <a href="tech" style="--i:3;">How We Detect Bias<span></span></a>
@@ -203,7 +203,20 @@
 
         
     </header>
-
+    <div class="loader-container" id="loaderContainer">
+        <div class="loader">
+            <img src="{% static 'img/backgroundloadui.png' %}" alt="Loading Image"
+                style="width:150px;height:150px;opacity:0.9;position:absolute;scale:1.2;">
+            <img src="{% static 'img/scale1.png' %}" alt="Loading Image"
+                style="width:150px;height:150px;opacity:0.9;animation: scale1 2s ease infinite;position:absolute;">
+            <img src="{% static 'img/scale2.png' %}" alt="Loading Image"
+                style="width:150px;height:150px;opacity:0.9;animation: scale2 2s ease infinite;position:absolute;">
+            <img src="{% static 'img/tilter.png' %}" alt="Loading Image"
+                style="width:88px;height:18px;opacity:0.9;animation: tilter 2s ease infinite;position:absolute;">
+            <img src="{% static 'img/stand.png' %}" alt="Loading Image"
+                style="width:150px;height:150px;opacity:0.9;position:absolute;">
+        </div>
+    </div>
     <div class="content">
         <div style="display: inline-block; text-align: left;">
             <div class="logo">
@@ -246,6 +259,16 @@
         </div>
 
     <footer>
+    <div class="footerContainer" style="position: fixed">
+        <div class="socialIcons">
+            <a href=""><i class="fa-brands fa-facebook "></i></a>
+            <a href=""><i class="fa-brands fa-instagram "></i></a>
+            <a href=""><i class="fa-brands fa-twitter "></i></a>    
+        </div>
+
+        <div class="footerBottom">
+            <p>Copyright &copy;2024; NoBias</p>
+        </div>
         <div class="socialIcons">
             <a href="#"><i class="fab fa-facebook"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
@@ -253,6 +276,13 @@
         </div>
         
     </footer>
+    <!-- JS -->
+    <script>
+        // JavaScript function to show loader when the form is submitted
+        function showLoader() {
+            document.getElementById('loaderContainer').style.display = 'flex';
+        }
+    </script>
 
 </body>
 
