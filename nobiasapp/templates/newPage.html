@@ -228,7 +228,7 @@
             <p>NoBias is a program that will detect bias in a news article. We will detect bias by analyzing the tone,
                 sentiment, and diction of a news article.</p>
         </div>
-        <form method="post" action="{% url 'submitLink' %}" onsubmit="showLoader()"
+        <form method="post" action="{% url 'home' %}" onsubmit="showLoader()"
             style="display: flex; flex-direction: column; align-items: center; padding: 20px; margin-top: 70px;">
             
             {% csrf_token %}
