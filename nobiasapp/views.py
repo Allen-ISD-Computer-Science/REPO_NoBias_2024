@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from nlpFiles.getTextFromWeb import polarityRating, highRatedSent
+from nlpFiles.getTextFromWeb import polarityRating, highRatedSent, getTitle, webScrape
 from .forms import SubmitLinkForm
 
 # def submitLink(request):
@@ -28,14 +28,16 @@ def home(request):
         form = SubmitLinkForm(request.POST)
         if form.is_valid():
             link_object = form.save()  # This saves the link to the database
-            thisVar = link_object.link  # Access the link and store it in thisVar
+            weblink = link_object.link  # Access the link and store it in thisVar
             # You can now use thisVar for other Python code
             paragraph = []
-            polarityRating(paragraph, thisVar)
+            pageSource = webScrape(weblink)
+            title = getTitle(pageSource)
+            polarityRating(paragraph, pageSource)
             highValuedList = highRatedSent(paragraph)
             # Redirect or render a success page
-            return render(request, 'successPage.html', {'thisVar': paragraph, "highValuedList": highValuedList})
+            return render(request, 'successPage.html', {'thisVar': paragraph, "highValuedList": highValuedList, 'title': title})
     else:
         form = SubmitLinkForm()
 
-    return render(request, 'newPage.html', {'form': form})
+    return render(request, './newPage.html', {'form': form})

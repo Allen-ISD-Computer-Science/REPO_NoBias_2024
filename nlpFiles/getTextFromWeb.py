@@ -9,8 +9,48 @@ from bs4 import BeautifulSoup
 from nltk.corpus import wordnet as wn
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
+# class BiasDetection:
+#     def __init__(self, link):
+#         self.link = link
+#     def webScrape(webLink) -> str:
+#         BROWSER = os.environ.get('BROWSER', 'chrome')
 
+#         supported_browsers = ['chrome', 'firefox', 'safari', 'edge']
 
+#         if BROWSER.lower() in supported_browsers:
+#             if BROWSER.lower() == 'chrome':
+#                 chrome_options = webdriver.ChromeOptions()
+#                 chrome_options.add_argument('--headless')  
+#                 driver = webdriver.Chrome(options=chrome_options)       
+#             elif BROWSER.lower() == 'firefox':
+#                 firefox_options = webdriver.FirefoxOptions()
+#                 firefox_options.add_argument('--headless')  
+#                 driver = webdriver.Firefox(options=firefox_options) 
+#             elif BROWSER.lower() == 'safari':
+#                 driver = webdriver.Safari()
+#                 safari_options = webdriver.SafariOptions()
+#                 safari_options.add_argument('--headless')  
+#                 driver = webdriver.Safari(options=safari_options) 
+#             elif BROWSER.lower() == 'edge':
+#                 driver = webdriver.Edge()
+#                 edge_options = webdriver.EdgeOptions()
+#                 edge_options.add_argument('--headless')  #
+#                 driver = webdriver.Edge(options=edge_options) 
+#         else:
+#             print(f"Invalid or unsupported browser specified: {BROWSER}. Using the default browser.")
+#             driver = webdriver.Chrome()
+            
+#         driver.get(webLink)
+
+#         # Wait for a while to allow JavaScript to execute (adjust the time as needed)
+#         driver.implicitly_wait(1)
+
+#         pageSource = driver.page_source
+#         #Using BS and strip_tags to get wanted text
+
+#         soupText = BeautifulSoup(pageSource, 'html.parser')
+#         wantedText = soupText.findAll("p")
+#         return wantedText
 #!!!!! IMPORTANT !!!!!
 # GOING TO REWORK BIAS DETECTION TO ACTUALLY DETECT BIAS, CONCERNING WHERE IT IS IN THE TEXT AND IT'S TYPE(BIAS TOWARDS WHO?, WHAT KIND OF BIAS?, ETC)
 #!!!!! IMPORTANT !!!!!
@@ -23,8 +63,17 @@ def percentToInt(list):
     data_as_integers = [int(float_value) if isinstance(float_value, float) else int(float_value) for float_value in data_without_percentages]
 
     return(data_as_integers)
+# fucntion that returns the pages title
+def getTitle(soupText):
+    wantedText = soupText.find("h1")
+    strippedTitle = wantedText.text.strip()
+    return strippedTitle
+# fucntion that returns the paragraphs within a web page
+def getParagraph(soupText):
+    wantedText = soupText.findAll("p")
+    return wantedText
 
-
+# Function that returns the page source
 def webScrape(webLink):
     #Detect the users browser
 
@@ -63,9 +112,7 @@ def webScrape(webLink):
     pageSource = driver.page_source
     #Using BS and strip_tags to get wanted text
 
-    soupText = BeautifulSoup(pageSource, 'html.parser')
-    wantedText = soupText.findAll("p")
-    return wantedText
+    return BeautifulSoup(pageSource, 'html.parser')
 
 # def highRatedSentences(paraLink):
 def highRatedSent(paraList):
@@ -79,14 +126,14 @@ def highRatedSent(paraList):
             highList.append(str(round(polarityList[tupIndex][1] * 100, 1)) + "% Biased: " + paraList[tupIndex + 2] )
     return highList
 
-def polarityRating(list, link):
+def polarityRating(list, pageSource):
     # Starting up our models and analyzers
     tokenizer = AutoTokenizer.from_pretrained("d4data/bias-detection-model")
     model = TFAutoModelForSequenceClassification.from_pretrained("d4data/bias-detection-model")
     classifier = pipeline('text-classification', model=model, tokenizer=tokenizer)
     analyzer = SentimentIntensityAnalyzer()
 
-    wantedText = webScrape(link)
+    wantedText = getParagraph(pageSource)
     # Declare variables for average polarity
     count = 0
     polarityCount = 0
