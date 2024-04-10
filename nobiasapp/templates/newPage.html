@@ -186,7 +186,30 @@
             margin-top: 20px;
             color: #777; /
         }
+        .submitBox{
+            background-color: #007bff;
+            color: #fff;
+            width: 100%;
+            padding: 10px; 
+            margin-bottom: 10px; 
+            border: 1px solid #ccc; 
+            border-radius: 5px; 
+            box-sizing: border-box;
+        }
     </style>
+    <script>
+        function toggleForm() {
+            var linkForm = document.getElementById("link-form");
+            var textBoxForm = document.getElementById("text-box-form");
+            if (linkForm.style.display === "none") {
+                linkForm.style.display = "block";
+                textBoxForm.style.display = "none";
+            } else {
+                linkForm.style.display = "none";
+                textBoxForm.style.display = "block";
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -228,20 +251,26 @@
             <p>NoBias is a program that will detect bias in a news article. We will detect bias by analyzing the tone,
                 sentiment, and diction of a news article.</p>
         </div>
-        <form method="post" action="{% url 'home' %}" onsubmit="showLoader()"
-            style="display: flex; flex-direction: column; align-items: center; padding: 20px; margin-top: 70px;">
-            
-            {% csrf_token %}
-            <div class="linkbox" style="display: flex; flex-direction: column; width: 70%; align-items: center; ">
-                {{ form.link }}
-                <button type="submit"
-                    style="width: 100%; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer;"><i class="fas fa-search"></i>Submit</button>
-            </div>
-        </form>
-            <!-- <div class="search-bar">
-                <input type="text" placeholder="Search...">
-                <button type="submit"><i class="fas fa-search"></i></button>
-            </div>   -->
+        <button onclick="toggleForm()">Toggle Submit Box</button>
+
+        <div id="link-form">
+            <form method="post">
+                {% csrf_token %}
+                {{ link_form }}
+                <button type="submit" class="submitBox">Submit Link</button>
+            </form>
+        </div>
+
+        <div id="text-box-form" style="display: none;">
+            <form method="post">
+                {% csrf_token %}
+                {{ text_form }}
+                <button type="submit" class="submitBox">Submit Text</button>
+            </form>
+        </div>
+
+        
+           
             <div class="feature">
                 <div class="feature-item">
                     <h3>Detect and Measure Bias</h3>
