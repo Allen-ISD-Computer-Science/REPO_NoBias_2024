@@ -1,12 +1,8 @@
-import nltk
-import transformers
 from transformers import AutoTokenizer, TFAutoModelForSequenceClassification, pipeline
-from nltk.tokenize import sent_tokenize, word_tokenize
-import urllib.request
+from nltk.tokenize import sent_tokenize
 from selenium import webdriver
 import os
 from bs4 import BeautifulSoup
-from nltk.corpus import wordnet as wn
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 # class BiasDetection:
@@ -51,9 +47,7 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 #         soupText = BeautifulSoup(pageSource, 'html.parser')
 #         wantedText = soupText.findAll("p")
 #         return wantedText
-#!!!!! IMPORTANT !!!!!
-# GOING TO REWORK BIAS DETECTION TO ACTUALLY DETECT BIAS, CONCERNING WHERE IT IS IN THE TEXT AND IT'S TYPE(BIAS TOWARDS WHO?, WHAT KIND OF BIAS?, ETC)
-#!!!!! IMPORTANT !!!!!
+
 
 def percentToInt(list):
     # Remove '%' from strings and convert to float
@@ -127,12 +121,11 @@ def highRatedSent(paraList):
     return highList
 
 def polarityRating(list, pageSource):
-    # Starting up our models and analyzers
+    # Starting up our models
     tokenizer = AutoTokenizer.from_pretrained("d4data/bias-detection-model")
     model = TFAutoModelForSequenceClassification.from_pretrained("d4data/bias-detection-model")
     classifier = pipeline('text-classification', model=model, tokenizer=tokenizer)
     analyzer = SentimentIntensityAnalyzer()
-
     wantedText = getParagraph(pageSource)
     # Declare variables for average polarity
     count = 0
@@ -171,3 +164,19 @@ def polarityRating(list, pageSource):
     overallList.append(round(totBias / count * 100, 0))
     if count != 0:
         list.insert(0,overallList)
+# def getText(pageSource):
+#     tokenizer = AutoTokenizer.from_pretrained("d4data/bias-detection-model")
+#     model = TFAutoModelForSequenceClassification.from_pretrained("d4data/bias-detection-model")
+#     classifier = pipeline('text-classification', model=model, tokenizer=tokenizer)
+#     # analyzer = SentimentIntensityAnalyzer()
+
+#     wantedText = getParagraph(pageSource)
+#     for para in wantedText:
+#         sentences = sent_tokenize(para.text.strip())
+#         for sent in sentences:
+#             if sent != "":
+#                 print(classifier(sent)[0])
+# getText(webScrape("https://www.breitbart.com/2024-election/2024/04/11/doj-unmasks-inconsistencies-in-fani-williss-federal-grant-funds-use/"))
+# list1 = []
+# polarityRating(list1, webScrape("https://www.breitbart.com/2024-election/2024/04/11/doj-unmasks-inconsistencies-in-fani-williss-federal-grant-funds-use/"))
+# print(list1)

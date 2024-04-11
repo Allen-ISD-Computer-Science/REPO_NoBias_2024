@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from nlpFiles.getTextFromWeb import polarityRating, highRatedSent, getTitle, webScrape
+from nlpFiles.detectionInText import biasInText
 from .forms import SubmitLinkForm, SubmitTextBoxForm
 
 # def submitLink(request):
@@ -37,12 +38,13 @@ def home(request):
             title = getTitle(pageSource)
             polarityRating(paragraph, pageSource)
             highValuedList = highRatedSent(paragraph)
-            return render(request, 'successPage.html', {'thisVar': paragraph, "highValuedList": highValuedList, 'title': title})
+            return render(request, 'successPage.html', {'thisVar': paragraph, "highValuedList": highValuedList, 'title': title}) #Redirects to successpage when a link is submitted
         
         elif text_form.is_valid():
             text_object = text_form.save()
+            sentences = biasInText(str(text_object))
             # Do something with the text form submission
-            return render(request, 'textPage.html', {'thisVar': text_object})  # Render a success page for text form submission
+            return render(request, 'textPage.html', {'sentences': sentences}) #Redirects to the successpage when text is submitted
         
     else:
         link_form = SubmitLinkForm()
