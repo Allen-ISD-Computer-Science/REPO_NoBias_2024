@@ -1,154 +1,288 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
+<head>
+    <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Successfuly Submitted Text</title>
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    </head>
+        <title>NoBias</title>
+        <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
+        <link rel="stylesheet" href="{% static 'css/loader.css' %}">
+        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+            integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
+       
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5; 
+            color: #333;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 0;
+        }
+
+        
+        .navbar {
+            background-color: #333  ; 
+            padding: 20px 0;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            display: inline-block;
+            color: #fff;
+            text-decoration: none;
+            margin: 0 20px;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #ff7b00;
+        }
+
         .logo img {
                 width: 100px;
                 float: left;
-                padding-left: 10%;
+                padding-left: 9%;
                 padding-top: 2%;
             }
-        canvas {
-        position: relative;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        }
-        .text {
-        color: white;
-        font-weight: 600;
-        font-size: 24px;
-        position: absolute;
-        bottom: 55px;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        }
-        .helpstuff {
-            display: flex;
-            margin:auto;
-            width:500px;
-        }
 
-        .tooltip {
-            position: relative;
-            display: inline-block;
-        }
-          
-        .tooltip .tooltiptext {
-            visibility: hidden;
-            width: 200px;
-            background-color: white;
-            background: #415f77;
-            color: #fff;
+        .search-bar {
             text-align: center;
-            padding: 5px 0;
-            border-radius: 6px;
-            opacity:0.77;
-           
-            position: absolute;
-            position: right;
-            z-index: 1;
+            margin-top: 50px;
+            
         }
 
-        .tooltip:hover .tooltiptext {
-            visibility: visible;
+        .search-bar input[type="text"] {
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            background-color: #fff; 
+            color: #333; 
+            width: 250px;
+            transition: width 0.3s;
         }
+
+        .search-bar input[type="text"]:focus {
+            width: 300px;
+            outline: none;
+        }
+
+        .search-bar button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            background-color: #ff7b00; 
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .search-bar button:hover {
+            background-color: #e66000; 
+        }
+
         
-        .hoverstuff {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .content {
+            padding: 100px 20px 20px;
+            text-align: center;
         }
 
-        .box {
-            background-color: #f8f8f8;
+        .description {
+            margin-top: 50px;
+        }
+
+       
+        .testimonials {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .testimonial {
+            width: 300px;
             padding: 20px;
+            margin: 20px;
+            background-color: #fff; 
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            line-height: 30px;
-            padding-top: 25px;
+            transition: transform 0.3s;
         }
 
-        .polarity-bar {
+        .testimonial:hover {
+            transform: translateY(-10px);
+        }
+
+        .testimonial p {
+            color: #555;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            margin-top: 20px;
+            color: #777;
+        }
+
+      
+        footer {
+            background-color: #333; 
+            color: #ccc;
+            text-align: center;
+            padding: 20px 0;
+            position: fixed;
+            bottom: 0;
+            left: 0;
             width: 100%;
-            height: 20px;
-            background-color: #ddd;
-            border-radius: 5px;
-            overflow: hidden;
-            --cwidth1: {{ thisVar.0.0 }};
-            --cwidth2: {{ thisVar.0.1 }};
-            --cwidth3: {{ thisVar.0.2 }};
+            z-index: 1000;
         }
 
-        .polarity-bar .section {
-            height: 100%;
-            float: left;
+        .socialIcons a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 20px;
+        }
+        .content {
+            padding: 100px 20px 20px;
+            text-align: center;
         }
 
-        .red-section {
-            background-color: #ff4646;
-            width: var(--cwidth1);
+        .feature {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 50px;
         }
 
-        .grey-section {
-            background-color: #a0a0a0;
-            width: var(--cwidth2);
+        .feature-item {
+            width: 300px;
+            padding: 20px;
+            margin: 20px;
+            background-color: #fff; 
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
         }
 
-        .green-section {
-            background-color: #4caf50;
-            width: var(--cwidth3);
-        }
-        h2{
-            color: black;
+        .feature-item:hover {
+            transform: translateY(-10px);
         }
 
+        .feature-item h3 {
+            color: #555; /* Dark grey testimonial text color */
+            font-style: italic;
+        }
+
+        .feature-item p {
+            margin-top: 20px;
+            color: #777; /
+        }
+        .submitBox{
+            background-color: #007bff;
+            color: #fff;
+            width: 100%;
+            padding: 10px; 
+            margin-bottom: 10px; 
+            border: 1px solid #ccc; 
+            border-radius: 5px; 
+            box-sizing: border-box;
+        }
     </style>
+    <script>
+        function toggleForm() {
+            var linkForm = document.getElementById("link-form");
+            var textBoxForm = document.getElementById("text-box-form");
+            if (linkForm.style.display === "none") {
+                linkForm.style.display = "block";
+                textBoxForm.style.display = "none";
+            } else {
+                linkForm.style.display = "none";
+                textBoxForm.style.display = "block";
+            }
+        }
+    </script>
+</head>
 
-    <body>
-        <header class="header">
+<body>
 
-            <div class="logo">
-                <img src="{% static 'img/logo.png' %}" alt="1st-logo-1" style="scale: 0.8;">
-            </div>
+    <header class="header">
+        
 
+        <nav class="navbar">
+            <a href="home" style="--i:0;">Home<span></span></a>
+            <a href="aboutus" style="--i:1;">About Us<span></span></a>
+            <a href="#" style="--i:2;">Contacts<span></span></a>
+            <a href="tech" style="--i:3;">How We Detect Bias<span></span></a>
+        </nav>
 
-            <input type="checkbox" id="check">
-            <label for="check" class="icons">
-                <i class="bx bx-menu" id="menu-icon"></i>
-                <i class="bx bx-x" id="close-icon"></i>
-
-
-            </label>
-            <nav class="navbar">
-                <a href="home" style="--i:0;">Home<span></span></a>
-                <a href="aboutus" style="--i:1;">About Us<span></span></a>
-                <a href="#" style="--i:2;"> Contacts<span></span></a>
-                <a href="tech" style="--i:3;"> How We Detect Bias<span></span></a>
-            </nav>
-        </header>
-        <br><br>
+        
+    </header>
+    <div class="loader-container" id="loaderContainer">
+        <div class="loader">
+            <img src="{% static 'img/backgroundloadui.png' %}" alt="Loading Image"
+                style="width:150px;height:150px;opacity:0.9;position:absolute;scale:1.2;">
+            <img src="{% static 'img/scale1.png' %}" alt="Loading Image"
+                style="width:150px;height:150px;opacity:0.9;animation: scale1 2s ease infinite;position:absolute;">
+            <img src="{% static 'img/scale2.png' %}" alt="Loading Image"
+                style="width:150px;height:150px;opacity:0.9;animation: scale2 2s ease infinite;position:absolute;">
+            <img src="{% static 'img/tilter.png' %}" alt="Loading Image"
+                style="width:88px;height:18px;opacity:0.9;animation: tilter 2s ease infinite;position:absolute;">
+            <img src="{% static 'img/stand.png' %}" alt="Loading Image"
+                style="width:150px;height:150px;opacity:0.9;position:absolute;">
+        </div>
+    </div>
+    <div class="content">
+        <div style="display: inline-block; text-align: left;">
+            
+            <h1>Text Successfully Processed</h1>
+        </div>
+        <div class="description">
+            <p>Here is what we Found: </p>
+        </div>
         <div class="box">
             
             <ul style="list-style-type: none; padding: 0; ">
                 
-                {% for link in sentences %}
+                {% for sentRating, sent in sentences %}
                     <li style="font-family: 'Open Sans', sans-serif; color: #003366; word-wrap: break-word;line-height: 40px;">
-                        {{ link }}
+                        {{ sent}} - {{ sentRating }}
                     </li>
                 {% endfor %}
             </ul>
         </div>
 
+        
+           
+            
+        </div>
+<br><br><br>
+    <footer>
+    <div class="footerContainer" >
+        <div class="socialIcons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        
+    </footer>
+    
+    <!-- JS -->
+    <script>
+        // JavaScript function to show loader when the form is submitted
+        function showLoader() {
+            document.getElementById('loaderContainer').style.display = 'flex';
+        }
+    </script>
 
-    </body>
+</body>
 
 </html>

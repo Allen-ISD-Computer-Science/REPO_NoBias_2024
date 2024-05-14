@@ -5,48 +5,6 @@ import os
 from bs4 import BeautifulSoup
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
-# class BiasDetection:
-#     def __init__(self, link):
-#         self.link = link
-#     def webScrape(webLink) -> str:
-#         BROWSER = os.environ.get('BROWSER', 'chrome')
-
-#         supported_browsers = ['chrome', 'firefox', 'safari', 'edge']
-
-#         if BROWSER.lower() in supported_browsers:
-#             if BROWSER.lower() == 'chrome':
-#                 chrome_options = webdriver.ChromeOptions()
-#                 chrome_options.add_argument('--headless')  
-#                 driver = webdriver.Chrome(options=chrome_options)       
-#             elif BROWSER.lower() == 'firefox':
-#                 firefox_options = webdriver.FirefoxOptions()
-#                 firefox_options.add_argument('--headless')  
-#                 driver = webdriver.Firefox(options=firefox_options) 
-#             elif BROWSER.lower() == 'safari':
-#                 driver = webdriver.Safari()
-#                 safari_options = webdriver.SafariOptions()
-#                 safari_options.add_argument('--headless')  
-#                 driver = webdriver.Safari(options=safari_options) 
-#             elif BROWSER.lower() == 'edge':
-#                 driver = webdriver.Edge()
-#                 edge_options = webdriver.EdgeOptions()
-#                 edge_options.add_argument('--headless')  #
-#                 driver = webdriver.Edge(options=edge_options) 
-#         else:
-#             print(f"Invalid or unsupported browser specified: {BROWSER}. Using the default browser.")
-#             driver = webdriver.Chrome()
-            
-#         driver.get(webLink)
-
-#         # Wait for a while to allow JavaScript to execute (adjust the time as needed)
-#         driver.implicitly_wait(1)
-
-#         pageSource = driver.page_source
-#         #Using BS and strip_tags to get wanted text
-
-#         soupText = BeautifulSoup(pageSource, 'html.parser')
-#         wantedText = soupText.findAll("p")
-#         return wantedText
 
 
 def percentToInt(list):
@@ -135,12 +93,13 @@ def polarityRating(list, pageSource):
     totNon = 0
     totPos = 0
     totNeg = 0
+    sentList = []
     sentBiasList = []
     for para in wantedText:
         sentences = sent_tokenize(para.text.strip())
         for sent in sentences:
             if sent != "":
-                list.append(sent)
+                sentList.append(sent)
                 temp = classifier(sent)[0]
                 if temp['label'] == "Non-biased":
                     sentBiasList.append(("Non-biased", temp["score"]))
@@ -160,6 +119,7 @@ def polarityRating(list, pageSource):
                 # Adds to the total polarity based on the key of the dictionary
                 count += 1
     list.insert(0, sentBiasList)
+    list.append(sentList)
     overallList = [str(round(totBias / count * 100, 1)) + "%", str(round(totNon / count * 100, 1)) + "%", str(round(totPos / polarityCount * 100, 1)) + "%", str(round(totNeg / polarityCount * 100, 1)) + "%" , round(totNeg / polarityCount * 100, 1)]
     overallList.append(round(totBias / count * 100, 0))
     if count != 0:

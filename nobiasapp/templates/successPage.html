@@ -1,324 +1,258 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
+<head>
+    <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Successfuly Submitted Link</title>
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    </head>
+        <title>NoBias</title>
+        <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
+        <link rel="stylesheet" href="{% static 'css/loader.css' %}">
+        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+            integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
+       
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5; 
+            color: #333;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 0;
+        }
+
+        
+        .navbar {
+            background-color: #333  ; 
+            padding: 20px 0;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            display: inline-block;
+            color: #fff;
+            text-decoration: none;
+            margin: 0 20px;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #ff7b00;
+        }
+
         .logo img {
                 width: 100px;
                 float: left;
-                padding-left: 10%;
+                padding-left: 9%;
                 padding-top: 2%;
             }
-        canvas {
-        position: relative;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        }
-        .text {
-        color: white;
-        font-weight: 600;
-        font-size: 24px;
-        position: absolute;
-        bottom: 55px;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        }
-        .helpstuff {
-            display: flex;
-            margin:auto;
-            width:500px;
-        }
 
-        .tooltip {
-            position: relative;
-            display: inline-block;
-        }
-          
-        .tooltip .tooltiptext {
-            visibility: hidden;
-            width: 200px;
-            background-color: white;
-            background: #415f77;
-            color: #fff;
+        .search-bar {
             text-align: center;
-            padding: 5px 0;
-            border-radius: 6px;
-            opacity:0.77;
-           
-            position: absolute;
-            position: right;
-            z-index: 1;
+            margin-top: 50px;
+            
         }
 
-        .tooltip:hover .tooltiptext {
-            visibility: visible;
+        .search-bar input[type="text"] {
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            background-color: #fff; 
+            color: #333; 
+            width: 250px;
+            transition: width 0.3s;
         }
+
+        .search-bar input[type="text"]:focus {
+            width: 300px;
+            outline: none;
+        }
+
+        .search-bar button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            background-color: #ff7b00; 
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .search-bar button:hover {
+            background-color: #e66000; 
+        }
+
         
-        .hoverstuff {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .content {
+            padding: 100px 20px 20px;
+            text-align: center;
         }
 
-        .box {
-            background-color: #f8f8f8;
+        .description {
+            margin-top: 50px;
+        }
+
+       
+        .testimonials {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .testimonial {
+            width: 300px;
             padding: 20px;
+            margin: 20px;
+            background-color: #fff; 
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            line-height: 30px;
-            padding-top: 25px;
+            transition: transform 0.3s;
         }
 
-        .polarity-bar {
+        .testimonial:hover {
+            transform: translateY(-10px);
+        }
+
+        .testimonial p {
+            color: #555;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            margin-top: 20px;
+            color: #777;
+        }
+
+      
+        footer {
+            background-color: #333; 
+            color: #ccc;
+            text-align: center;
+            padding: 20px 0;
+            position: fixed;
+            bottom: 0;
+            left: 0;
             width: 100%;
-            height: 20px;
-            background-color: #ddd;
-            border-radius: 5px;
-            overflow: hidden;
-            --cwidth1: {{ thisVar.0.0 }};
-            --cwidth2: {{ thisVar.0.1 }};
-            --cwidth3: {{ thisVar.0.2 }};
+            z-index: 1000;
         }
 
-        .polarity-bar .section {
-            height: 100%;
-            float: left;
+        .socialIcons a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 20px;
+        }
+        .content {
+            padding: 100px 20px 20px;
+            text-align: center;
         }
 
-        .red-section {
-            background-color: #ff4646;
-            width: var(--cwidth1);
+        .feature {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 50px;
         }
 
-        .grey-section {
-            background-color: #a0a0a0;
-            width: var(--cwidth2);
+        .feature-item {
+            width: 300px;
+            padding: 20px;
+            margin: 20px;
+            background-color: #fff; 
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
         }
 
-        .green-section {
-            background-color: #4caf50;
-            width: var(--cwidth3);
-        }
-        h2{
-            color: black;
+        .feature-item:hover {
+            transform: translateY(-10px);
         }
 
+        .feature-item h3 {
+            color: #555; /* Dark grey testimonial text color */
+            font-style: italic;
+        }
+
+        .feature-item p {
+            margin-top: 20px;
+            color: #777; /
+        }
+        .submitBox{
+            background-color: #007bff;
+            color: #fff;
+            width: 100%;
+            padding: 10px; 
+            margin-bottom: 10px; 
+            border: 1px solid #ccc; 
+            border-radius: 5px; 
+            box-sizing: border-box;
+        }
     </style>
+    
+</head>
 
-    <body>
-        <header class="header">
+<body>
 
-            <div class="logo">
-                <img src="{% static 'img/logo.png' %}" alt="1st-logo-1" style="scale: 0.8;">
-            </div>
+    <header class="header">
+        
 
+        <nav class="navbar">
+            <a href="home" style="--i:0;">Home<span></span></a>
+            <a href="aboutus" style="--i:1;">About Us<span></span></a>
+            <a href="#" style="--i:2;">Contacts<span></span></a>
+            <a href="tech" style="--i:3;">How We Detect Bias<span></span></a>
+        </nav>
 
-            <input type="checkbox" id="check">
-            <label for="check" class="icons">
-                <i class="bx bx-menu" id="menu-icon"></i>
-                <i class="bx bx-x" id="close-icon"></i>
-
-
-            </label>
-            <nav class="navbar">
-                <a href="home" style="--i:0;">Home<span></span></a>
-                <a href="aboutus" style="--i:1;">About Us<span></span></a>
-                <a href="#" style="--i:2;"> Contacts<span></span></a>
-                <a href="tech" style="--i:3;"> How We Detect Bias<span></span></a>
-            </nav>
-        </header>
-        <br><br>
-        <div class="box">
-            
-            <div class="helpstuff">
-            
-            </div> <br>
-            <!-- <div class="polarity-bar">
-                <div class="section red-section"></div>
-                <div class="section grey-section"></div>
-                <div class="section green-section"></div>
-            </div> -->
-
-            <div class="hoverstuff">
-                <h2 style="font-weight: 200;"> Bias Meter </h2> <br>
-                <div class="tooltip">
-                    <img src="{% static 'img/help.png' %}" alt="Loading Image"
-                        style="width:20px;height:20px;opacity:0.9;margin-left:20px">
-                        <span class="tooltiptext"> The more left the Biasometer is, the less bias it has. The more right the Biasometer is, the more bias it has. </span>
-                </div>
-            </div>
+        
+    </header>
+    
+    <div class="content">
+        <div style="display: inline-block; text-align: left;">
+            <h2> {{ biasperc }} of the sentences in this article is likely to be bias</h2>
             <h1> {{ title }}</h1>
-            <!-- Start Speedometer -->
-            <div id="speed" style="margin-bottom: -4%; margin-top: 100px;">
-                <canvas id="canvas" height="175" width="350" class="m-auto">
-
-                </canvas>
-                <p class="text"></p>
-                <script>
-                    //Change this Value to set the percentage
-                    const totalBias = "{{thisVar.0.5}}";
-                    console.log(totalBias);
-                    let totalRot = ((totalBias / 100) * 180 * Math.PI) / 180;
-
-                    let rotation = 0;
-                    let doAnim = true;
-                    let canvas = null;
-                    let ctx = null;
-                    let text = document.querySelector(".text");
-                    canvas = document.getElementById("canvas");
-                    ctx = canvas.getContext("2d");
-                    setTimeout(requestAnimationFrame(animate), 1500);
-
-                    function calcPointsCirc(cx, cy, rad, dashLength) {
-                    var n = rad / dashLength,
-                        alpha = (Math.PI * 2) / n,
-                        pointObj = {},
-                        points = [],
-                        i = -1;
-
-                    while (i < n) {
-                        var theta = alpha * i,
-                        theta2 = alpha * (i + 1);
-
-                        points.push({
-                        x: Math.cos(theta) * rad + cx,
-                        y: Math.sin(theta) * rad + cy,
-                        ex: Math.cos(theta2) * rad + cx,
-                        ey: Math.sin(theta2) * rad + cy
-                        });
-                        i += 2;
-                    }
-                    return points;
-                    }
-                    function animate() {
-                    //Clearing animation on every iteration
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    const center = {
-                        x: 175,
-                        y: 175
-                    };
-
-                    //main arc
-                    ctx.beginPath();
-                    ctx.strokeStyle = rotation >= 0.75 * Math.PI ? "#FF9421" : "#35FFFF";
-                    ctx.lineWidth = "3";
-                    let radius = 174;
-                    ctx.arc(center.x, center.y, radius, Math.PI, Math.PI + rotation);
-                    ctx.stroke();
-
-                    //Red Arc
-                    if (rotation <= 0.75 * Math.PI) {
-                        ctx.beginPath();
-                        ctx.strokeStyle = "#FF9421";
-                        ctx.lineWidth = "3";
-                        ctx.arc(center.x, center.y, radius, 1.75 * Math.PI, 0);
-                        ctx.stroke();
-                    }
-
-                    //functions to draw dotted lines
-                    const DrawDottedLine = (x1, y1, x2, y2, dotRadius, dotCount, dotColor) => {
-                        var dx = x2 - x1;
-                        var dy = y2 - y1;
-                        let slopeOfLine = dy / dx;
-                        var degOfLine =
-                        Math.atan(slopeOfLine) * (180 / Math.PI) > 0
-                            ? Math.atan(slopeOfLine) * (180 / Math.PI)
-                            : 180 + Math.atan(slopeOfLine) * (180 / Math.PI);
-                        var degOfNeedle = rotation * (180 / Math.PI);
-
-                        if (rotation >= 0.75 * Math.PI) {
-                        dotColor = degOfLine <= degOfNeedle ? "#FF9421" : "#f97272";
-                        } else {
-                        dotColor = degOfLine <= degOfNeedle ? dotColor : "#aad4d4";
-                        }
-                        var spaceX = dx / (dotCount - 1);
-                        var spaceY = dy / (dotCount - 1);
-                        var newX = x1;
-                        var newY = y1;
-                        for (var i = 0; i < dotCount; i++) {
-                        dotRadius = dotRadius >= 0.75 ? dotRadius - i * (0.5 / 15) : dotRadius;
-                        drawDot(newX, newY, dotRadius, `${dotColor}${100 - (i + 1)}`);
-                        newX += spaceX;
-                        newY += spaceY;
-                        }
-                    };
-                    const drawDot = (x, y, dotRadius, dotColor) => {
-                        ctx.beginPath();
-                        ctx.arc(x, y, dotRadius, 0, 2 * Math.PI, false);
-                        ctx.fillStyle = dotColor;
-                        ctx.fill();
-                    };
-                    let firstDottedLineDots = calcPointsCirc(center.x, center.y, 165, 1);
-                    for (let k = 0; k < firstDottedLineDots.length; k++) {
-                        let x = firstDottedLineDots[k].x;
-                        let y = firstDottedLineDots[k].y;
-                        DrawDottedLine(x, y, 175, 175, 1.75, 30, "#35FFFF");
-                    }
-
-                    //dummy circle to hide the line connecting to center
-                    ctx.beginPath();
-                    ctx.arc(center.x, center.y, 80, 2 * Math.PI, 0);
-                    ctx.fillStyle = "black";
-                    ctx.fill();
-
-                    //Speedometer triangle
-                    var x = -75,
-                        y = 0;
-                    ctx.save();
-                    ctx.beginPath();
-                    ctx.translate(175, 175);
-                    ctx.rotate(rotation);
-                    ctx.moveTo(x, y);
-                    ctx.lineTo(x + 10, y - 10);
-                    ctx.lineTo(x + 10, y + 10);
-                    ctx.closePath();
-                    ctx.fillStyle = rotation >= 0.75 * Math.PI ? "#FF9421" : "#35FFFF";
-                    ctx.fill();
-                    ctx.restore();
-                    if (rotation < totalRot) {
-                        rotation += (1 * Math.PI) / 180;
-                        if (rotation > totalRot) {
-                        rotation -= (1 * Math.PI) / 180;
-                        }
-                    }
-
-                    text.innerHTML = Math.round((rotation / Math.PI) * 100) + 0 + "%";
-                    requestAnimationFrame(animate);
-                    }
-                </script>
-            </div>
-
-            <!-- End Speedometer -->
-
+            
             <ul style="list-style-type: none; padding: 0; ">
                 
-                {% for link in highValuedList %}
-    {% if "+aksdlkfjasdlkf" in link %}
-        <li style="font-family: 'Open Sans', sans-serif; color: green; word-wrap: break-word;line-height: 40px;">
-            {{ link }}
+                {% for link, rating in sentences%}
+    {% if 'Non-biased' not in rating %}
+        <li style="font-family: 'Open Sans', sans-serif; color: rgb(128, 0, 0); word-wrap: break-word;line-height: 40px;">
+            {{ link }} 
         </li>
-    {% elif "++akflksadjf" in link %}
-        <li style="font-family: 'Open Sans', sans-serif; color: red; word-wrap: break-word;line-height: 40px;">
-            {{ link }}
-        </li>
+   
     {% else %}
         <li style="font-family: 'Open Sans', sans-serif; color: #003366; word-wrap: break-word;line-height: 40px;">
             {{ link }}
         </li>
-    {% endif %}
+        {%endif%}
+        {%if "These cookies are necessary for our services to function and cannot be switched off in our systems." in link%}
+            break
+            {%endif%}
 {% endfor %}
             </ul>
         </div>
+    </div>
+<br><br><br>
+    <footer>
+    <div class="footerContainer" >
+        <div class="socialIcons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        
+    </footer>
+    
 
 
-    </body>
+</body>
 
 </html>
